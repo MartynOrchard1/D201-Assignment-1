@@ -29,6 +29,18 @@ public class Node<T>
                 }
                 current.Next = newNode;
             }
+     
+            }
+        public List<T> ToList() 
+        {
+            List<T> list = new();
+            Node<T> current = head;
+            while (current != null)
+            {
+                list.Add(current.Data);
+                current = current.Next;
+            }
+            return list;
         }
     }
 }
