@@ -16,6 +16,8 @@ public class HashTable<Tkey, TValue>
             return value;
         }
 
+        public bool ContainsKey(Tkey key) => table.ContainsKey(key);
         
+        public List<TValue> GetAllValues() => table.Values.ToList();
     }
 }
