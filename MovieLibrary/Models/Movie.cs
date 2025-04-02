@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 public class Movie 
 {
-    public required int ID { get; set; }
+    public int ID { get; set; }
     public required string Title { get; set; } 
     public required string Director { get; set; } 
     public required string Genre { get; set; } 
