@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace D201_Assignment_1;
+namespace movielibrary;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

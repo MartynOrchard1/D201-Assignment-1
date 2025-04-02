@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\D201-Assignment-1.csproj": {}
+    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\movielibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\D201-Assignment-1.csproj": {
+    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\movielibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\D201-Assignment-1.csproj",
-        "projectName": "D201-Assignment-1",
-        "projectPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\D201-Assignment-1.csproj",
+        "projectUniqueName": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\movielibrary.csproj",
+        "projectName": "movielibrary",
+        "projectPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\movielibrary.csproj",
         "packagesPath": "C:\\Users\\ASUSLP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\obj\\",
+        "outputPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUSLP\\AppData\\Roaming\\NuGet\\NuGet.Config"

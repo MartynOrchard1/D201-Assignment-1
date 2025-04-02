@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace D201_Assignment_1;
+namespace movielibrary;
 
 /// <summary>
 /// Interaction logic for App.xaml
