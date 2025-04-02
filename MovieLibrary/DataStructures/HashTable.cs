@@ -1,8 +1,8 @@
-public class HashTable<Tkey, TValue>
+public class HashTable<Tkey, TValue> // Hash table to search movies via ID
 {
     private readonly Dictionary<Tkey, TValue> table = new();
 
-    public void Add(Tkey key, TValue value)
+    public void Add(Tkey key, TValue value) // Add the key-value pair
     {
         if (table.ContainsKey(key))
         {
@@ -10,7 +10,7 @@ public class HashTable<Tkey, TValue>
             table[key] = value;
         }
 
-        public TValue Get(Tkey key)
+        public TValue Get(Tkey key) // Get value via key
         {
             table.TryGetValue(key, out var value);
             return value;
