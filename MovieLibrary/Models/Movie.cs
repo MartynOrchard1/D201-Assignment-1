@@ -7,5 +7,5 @@ public class Movie
     public required string Director { get; set; } 
     public required string Genre { get; set; } 
     public int ReleaseYear { get; set; }
-    public required bool IsAvailable { get; set; } = true;
+    public bool IsAvailable { get; set; } = true;
 }
