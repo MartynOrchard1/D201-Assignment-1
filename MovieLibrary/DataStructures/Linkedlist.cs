@@ -1,4 +1,4 @@
-public class Node<T>
+public class Node<T> // Node class for the Linkedlist
 {
     public T Data;
     public Node<T> Next;
@@ -9,11 +9,11 @@ public class Node<T>
         Next = null;
     }
 
-    public class LinkedList<T>
+    public class LinkedList<T> 
     {
         private Node<T> head;
 
-        public void Add(T data)
+        public void Add(T data) // Add a new item to the list
         {
             Node<T> newNode = new Node<T>(data);
             if (head == null)
@@ -31,7 +31,7 @@ public class Node<T>
             }
      
             }
-        public List<T> ToList() 
+        public List<T> ToList() // Conver linked list to normal list
         {
             List<T> list = new();
             Node<T> current = head;
