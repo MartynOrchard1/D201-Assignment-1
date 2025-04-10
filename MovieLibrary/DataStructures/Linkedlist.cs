@@ -1,46 +1,46 @@
-public class Node<T> // Node class for the Linkedlist
+public class Node<T> 
 {
-    public T Data;
-    public Node<T> Next;
+    public T Data { get; set; } 
+    public Node<T>? Next { get; set; }
 
-    public Node (T Data)
+    public Node(T data)
     {
-        Data = data;
-        Next = null;
+        Data = data; 
+        Next = null; 
     }
+}
 
-    public class LinkedList<T> 
+public class LinkedList<T> 
+{
+    private Node<T>? head; 
+
+    public void Add(T data) 
     {
-        private Node<T> head;
-
-        public void Add(T data) // Add a new item to the list
+        Node<T> newNode = new Node<T>(data);
+        if (head == null)
         {
-            Node<T> newNode = new Node<T>(data);
-            if (head == null)
-            {
-                head = newNode;
-            }
-            else
-            {
-                Node<T> current = head;
-                while (current.Next != null)
-                {
-                    current = current.Next;
-                }
-                current.Next = newNode;
-            }
-     
-            }
-        public List<T> ToList() // Conver linked list to normal list
+            head = newNode;
+        }
+        else
         {
-            List<T> list = new();
             Node<T> current = head;
-            while (current != null)
+            while (current.Next != null)
             {
-                list.Add(current.Data);
                 current = current.Next;
             }
-            return list;
+            current.Next = newNode;
         }
+    }
+
+    public List<T> ToList() 
+    {
+        List<T> list = new();
+        Node<T>? current = head;
+        while (current != null)
+        {
+            list.Add(current.Data);
+            current = current.Next;
+        }
+        return list;
     }
 }
