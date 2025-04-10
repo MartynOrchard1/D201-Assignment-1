@@ -29,5 +29,7 @@
             <Button Content="Search" Width="80" Margin="5"/>
         </WrapPanel>
 
+        <!-- DataGrid for Display -->
+        <DataGrid x:Name="movieGrid" Grid.Row="2" AutoGenerateColumns="True" Margin="0"/>
     </Grid>
 </Window>
