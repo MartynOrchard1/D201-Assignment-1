@@ -8,5 +8,15 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <!-- Input Fields -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox x:Name="txtID" Width="100" Margin="5" Text="Movie ID" Foreground="Gray"/>
+            <TextBox x:Name="txtTitle" Width="120" Margin="5" Text="Title" Foreground="Gray"/>
+            <TextBox x:Name="txtDirector" Width="120" Margin="5" Text="Director" Foreground="Gray"/>
+            <TextBox x:Name="txtGenre" Width="100" Margin="5" Text="Genre" Foreground="Gray"/>
+            <TextBox x:Name="txtYear" Width="80" Margin="5" Text="Year" Foreground="Gray"/>
+        </StackPanel>
+
     </Grid>
 </Window>
