@@ -10,7 +10,7 @@ namespace movielibrary;
 /// </summary>
 public partial class App : Application
 {
-    public App()
+    public App() // LOOKS FOR THE ISSUE! -- Found the issue, issue was the path to the main window.xaml was incorrect.
     {
         // Handle unhandled exceptions in the application
         AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
