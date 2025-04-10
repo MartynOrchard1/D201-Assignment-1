@@ -1,0 +1,4 @@
+C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\Movielibrary\obj\Debug\net9.0-windows\MainWindow.g.cs
+C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\Movielibrary\obj\Debug\net9.0-windows\App.g.cs
+C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\Movielibrary\obj\Debug\net9.0-windows\movielibrary_MarkupCompile.cache
+C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\Movielibrary\obj\Debug\net9.0-windows\movielibrary_MarkupCompile.lref
