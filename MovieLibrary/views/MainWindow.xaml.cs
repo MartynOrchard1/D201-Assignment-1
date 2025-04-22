@@ -9,11 +9,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
-public partial class MainWindow : Window
+namespace MovieLibrary.Views
 {
-    public MainWindow()
+    // !! Currently not used - just placeholders !! 
+
+    // private readonly MovieService service = new();
+    // private interface movieCounter = 1;     
+    // private bool isTitleAscending = true;
+    // private bool isYearAscending = true;
+    // private bool isIdAscending = true;
+    public partial class MainWindow : Window
     {
-        
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
     }
 }
