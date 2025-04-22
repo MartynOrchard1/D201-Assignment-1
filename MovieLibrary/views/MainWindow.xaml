@@ -60,7 +60,61 @@
             <Button Content="Sort by ID" Click="SortID_Click" Grid.Column="9"/>
         </Grid>
 
-        <!-- DataGrid for Display -->
-        <DataGrid x:Name="movieGrid" Grid.Row="2" AutoGenerateColumns="True" Margin="0"/>
+        <!-- Search + Reset Row -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,10">
+            <ComboBox x:Name="cmbSearchType" Width="120" Height="26" Margin="0,0,5,0" VerticalContentAlignment="Center" SelectedIndex="0">
+                <ComboBoxItem Content="Search by Title" />
+                <ComboBoxItem Content="Search by MovieID" />
+            </ComboBox>
+            <TextBox x:Name="txtSearch" Width="180" Height="26" Margin="0,0,5,0" VerticalContentAlignment="Center"/>
+            <Button Content="Search" Click="Search_Click" Width="80" Height="28"/>
+            <Button Content="Reset" Click="Reset_Click" Width="100" Height="28" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <!-- List Display -->
+        <ListBox x:Name="movieListBox"
+                 Grid.Row="3"
+                 Margin="0"
+                 Background="LightGray"
+                 Foreground="Black"
+                 SelectionChanged="movieListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Gray" BorderThickness="1" Padding="8" Margin="4" Background="White">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold" FontSize="14">
+                                <Run Text="ID: "/>
+                                <Run Text="{Binding MovieID}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Title: " FontWeight="Bold"/>
+                                <Run Text="{Binding Title}"/>
+                                <Run Text=" || Director: " FontWeight="Bold"/>
+                                <Run Text="{Binding Director}"/>
+                                <Run Text=" || Genre: " FontWeight="Bold"/>
+                                <Run Text="{Binding Genre}"/>
+                                <Run Text=" || Year: " FontWeight="Bold"/>
+                                <Run Text="{Binding ReleaseYear}"/>
+                                <Run Text=" || Available: " FontWeight="Bold"/>
+                                <Run Text="{Binding IsAvailable}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="4"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="LightGray"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
     </Grid>
 </Window>
