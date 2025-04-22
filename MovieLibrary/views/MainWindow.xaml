@@ -16,6 +16,22 @@
                 <Label Content="Title" FontWeight="Bold"/>
                 <TextBox x:Name="txtTitle" Width="120"/>
             </StackPanel>
+            <StackPanel Margin="5">
+                <Label Content="Director" FontWeight="Bold"/>
+                <TextBox x:Name="txtDirector" Width="120"/>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <Label Content="Genre" FontWeight="Bold"/>
+                <TextBox x:Name="txtGenre" Width="100"/>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <Label Content="Release Year" FontWeight="Bold"/>
+                <TextBox x:Name="txtYear" Width="80"/>
+            </StackPanel>
+            <StackPanel Margin="5" VerticalAlignment="Bottom">
+                <Label Content="" Height="12"/> <!-- Invisible label for spacing -->
+                <Button Content="Add Movie" Click="AddMovie_Click"/>
+            </StackPanel>
         </StackPanel>
 
         <!-- Button Controls -->
