@@ -1,12 +1,13 @@
 ﻿<Window x:Class="movielibrary.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Movie Library" Height="600" Width="800">
+        Title="Movie Library" Height="600" Width="800" Background="LightGray">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/> <!-- Input Fields -->
+            <RowDefinition Height="Auto"/> <!-- Buttons -->
+            <RowDefinition Height="Auto"/> <!-- Search + Reset -->
+            <RowDefinition Height="*"/> <!-- Listbox -->
         </Grid.RowDefinitions>
 
         <!-- Input Fields -->
