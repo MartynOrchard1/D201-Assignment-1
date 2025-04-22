@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.ComponentModel.Design;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,5 +25,31 @@ namespace MovieLibrary.Views
         {
             InitializeComponent();
         }
+
+
+        private void AddMovie_Click(object sender, RoutedEventArgs e)
+        {
+            var movie = new Movie
+            {
+                MovieID = $"M{movieCounter:D3}",
+                Title = txtTitle.Text.Trim().ToUpper(),
+                Director = txtDirector.Text.Trim().ToUpper(),
+                Genre = txtGenre.Text.Trim().ToUpper(),
+                ReleaseYear = year
+            };
+
+            try
+            {
+                service.AddMovie(movie);
+                movieCounter++;
+                RefreshMovieList();
+                ClearInputFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }
