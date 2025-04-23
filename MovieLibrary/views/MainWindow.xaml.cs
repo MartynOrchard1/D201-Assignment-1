@@ -73,8 +73,55 @@ public partial class MainWindow : Window
             return;
         }
 
-        
+        // Make sure the year is realistic
+        if (year < 1888 || year > DateTime.Now.Year + 1)
+        {
+            MessageBox.Show($"Please enter a realistic year between 1888 and {DateTime.Now.Year + 1}.", "Invalid Year", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
 
+        // Make sure the title is not too long
+        if (txtTitle.Text.Trim().Length > 100)
+        {
+            MessageBox.Show("Title is too long. Please keep it under 100 characters.", "Title Too Long", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Make sure the director name is not too short
+        if (txtDirector.Text.Trim().Length < 2)
+        {
+            MessageBox.Show("Director name is too short.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Make sure the genre is not too short
+        if (txtGenre.Text.Trim().Length < 3)
+        {
+            MessageBox.Show("Genre must be at least 3 characters long.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Make sure the year is not in the future
+        if (year > DateTime.Now.Year)
+        {
+            MessageBox.Show("The release year can't be in the future.", "Invalid Year", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Check for exact duplicate (same title, director, and year)
+        bool exactDuplicate = service.GetAllMovies()
+            .Any(m =>
+                m.Title.Equals(txtTitle.Text.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                m.Director.Equals(txtDirector.Text.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                m.ReleaseYear == year);
+
+        if (exactDuplicate)
+        {
+            MessageBox.Show("An identical movie already exists with the same title, director, and year.", "Duplicate Movie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Create movie if all validations pass
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
