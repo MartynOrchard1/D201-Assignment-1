@@ -209,5 +209,24 @@ namespace MovieLibrary.Views
             RefreshMovieList();
             txtSearch.Clear();
         }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (movieListBox.SelectedItem is Movie selected)
+            {
+                var confirm = MessageBox.Show($"Are you sure you want to delete '{selected.Title}'?", "Confirm Delete", MessageBoxButton.YesNo);
+                if (confirm == MessageBoxResult.Yes)
+                {
+                    service.DeleteMovieById(selected.MovieID);
+                    RefreshMovieList();
+                    ClearInputFields();
+                    MessageBox.Show("Movie deleted successfully.", "Delete Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a movie to delete.");
+            }
+        }
     }
 }
