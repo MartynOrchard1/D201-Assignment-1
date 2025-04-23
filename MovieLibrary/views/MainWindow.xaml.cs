@@ -57,6 +57,13 @@ public partial class MainWindow : Window
             return;
         }
 
+        // Validate genre (letters and spaces only)
+        if (!System.Text.RegularExpressions.Regex.IsMatch(txtGenre.Text, @"^[a-zA-Z\s]+$"))
+        {
+            MessageBox.Show("Genre can only contain letters and spaces.", "Invalid Genre", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
