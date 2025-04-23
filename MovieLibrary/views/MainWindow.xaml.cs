@@ -269,6 +269,19 @@ public partial class MainWindow : Window
 
                 if (loaded != null)
                 {
+                    // Validate each movie to ensure no null or invalid values
+                    foreach (var movie in loaded)
+                    {
+                        if (string.IsNullOrWhiteSpace(movie.ID) ||
+                            string.IsNullOrWhiteSpace(movie.Title) ||
+                            string.IsNullOrWhiteSpace(movie.Director) ||
+                            string.IsNullOrWhiteSpace(movie.Genre) ||
+                            movie.ReleaseYear <= 0)
+                        {
+                            throw new InvalidDataException("The JSON file contains invalid or missing data.");
+                        }
+                    }
+
                     service.ReplaceAll(loaded);
                     RefreshMovieList();
 
@@ -286,10 +299,18 @@ public partial class MainWindow : Window
 
                     MessageBox.Show("Movies loaded.");
                 }
+                else
+                {
+                    throw new InvalidDataException("The JSON file is empty or invalid.");
+                }
             }
-            catch
+            catch (InvalidDataException ex)
             {
-                MessageBox.Show("Failed to load file.");
+                MessageBox.Show($"Failed to load file. Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load file. Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
