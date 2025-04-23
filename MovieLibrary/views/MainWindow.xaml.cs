@@ -228,5 +228,16 @@ namespace MovieLibrary.Views
                 MessageBox.Show("Please select a movie to delete.");
             }
         }
+
+        private void movieListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (movieListBox.SelectedItem is Movie selected)
+            {
+                txtTitle.Text = selected.Title;
+                txtDirector.Text = selected.Director;
+                txtGenre.Text = selected.Genre;
+                txtYear.Text = selected.ReleaseYear.ToString();
+            }
+        }
     }
 }
