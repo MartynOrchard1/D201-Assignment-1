@@ -143,5 +143,16 @@ namespace MovieLibrary.Views
             movieListBox.ItemsSource = sorted;
             isTitleAscending = !isTitleAscending; // Toggle sort direction
         }
+
+        private void SortYear_Click(object sender, RoutedEventArgs e)
+        {
+            var sorted = service.MergeSortByYear();
+
+            if (!isYearAscending)
+                sorted.Reverse();
+
+            movieListBox.ItemsSource = sorted;
+            isYearAscending = !isYearAscending; // Toggle sort direction
+        }
     }
 }
