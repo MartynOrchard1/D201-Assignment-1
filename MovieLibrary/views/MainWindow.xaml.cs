@@ -132,5 +132,16 @@ namespace MovieLibrary.Views
                 MessageBox.Show("Please select a movie to return.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void SortTitle_Click(object sender, RoutedEventArgs e)
+        {
+            var sorted = service.BubbleSortByTitle();
+
+            if (!isTitleAscending)
+                sorted.Reverse();
+
+            movieListBox.ItemsSource = sorted;
+            isTitleAscending = !isTitleAscending; // Toggle sort direction
+        }
     }
 }
