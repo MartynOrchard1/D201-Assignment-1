@@ -246,5 +246,16 @@ namespace MovieLibrary.Views
             movieListBox.ItemsSource = null; // Clear the current list
             movieListBox.ItemsSource = service.GetAllMovies(); // Load the updated list of movies
         }
+
+        // Clear all input fields in the form
+        private void ClearInputFields()
+        {
+            txtTitle.Clear();
+            txtDirector.Clear();
+            txtGenre.Clear();
+            txtYear.Clear();
+        }
+
+        
     }
 }
