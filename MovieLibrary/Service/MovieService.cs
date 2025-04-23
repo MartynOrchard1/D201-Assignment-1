@@ -1,5 +1,6 @@
 using MovieLibrary.Models;
 using MovieLibrary.DataStructures;
+using System.Collections.Generic;
 
 namespace MovieLibrary.Services;
 
@@ -7,7 +8,8 @@ public class MovieService
 {
     private HashTable<string, Movie> movieTable = new();
     private MovieLibrary.DataStructures.LinkedList<Movie> movieList = new();
-    private Dictionary<string, MovieLibrary.DataStructures.Queue<string>> waitingLists = new();
+    private readonly Dictionary<string, System.Collections.Generic.Queue<string>> waitingLists = new();
+    private readonly System.Collections.Generic.Queue<string> notifications = new();
 
     public void AddMovie(Movie movie)
     {
@@ -30,15 +32,24 @@ public class MovieService
     public void BorrowMovie(string id, string user)
     {
         var movie = SearchByID(id);
-        if (movie == null || !movie.IsAvailable)
+        if (movie == null)
+            throw new Exception("Movie not found");
+
+        if (!movie.IsAvailable)
         {
             if (!waitingLists.ContainsKey(id))
-                waitingLists[id] = new();
-            waitingLists[id].Enqueue(user);
+                waitingLists[id] = new System.Collections.Generic.Queue<string>();
+
+            // Prevent duplicate entries in the waiting queue
+            if (!waitingLists[id].Contains(user))
+                waitingLists[id].Enqueue(user);
+            else
+                AddNotification($"User '{user}' is already in the waiting queue for movie '{movie.Title}'.");
+
             return;
         }
 
-        movie.IsAvailable = false;
+        movie.IsAvailable = false; // Mark the movie as unavailable
     }
 
     public string ReturnMovie(string id)
@@ -47,13 +58,16 @@ public class MovieService
         if (movie == null)
             throw new Exception("Movie not found");
 
-        movie.IsAvailable = true;
-
-        if (waitingLists.ContainsKey(id) && waitingLists[id].Count() > 0)
+        if (waitingLists.ContainsKey(id) && waitingLists[id].Count > 0)
         {
-            return waitingLists[id].Dequeue();
+            // Assign the movie to the next user in the queue
+            var nextUser = waitingLists[id].Dequeue();
+            AddNotification($"Movie '{movie.Title}' has been assigned to {nextUser}.");
+            return nextUser;
         }
 
+        // If no users are in the queue, mark the movie as available
+        movie.IsAvailable = true;
         return null;
     }
 
@@ -126,5 +140,25 @@ public class MovieService
             movieList.Add(movie);
             movieTable.Add(movie.ID, movie);
         }
+    }
+
+    public void AddToWaitingQueue(string movieId, string user)
+    {
+        if (!waitingLists.ContainsKey(movieId))
+            waitingLists[movieId] = new System.Collections.Generic.Queue<string>();
+
+        waitingLists[movieId].Enqueue(user);
+    }
+
+    public void AddNotification(string message)
+    {
+        notifications.Enqueue(message);
+    }
+
+    public List<string> ExportNotifications()
+    {
+        var exported = notifications.ToList();
+        notifications.Clear();
+        return exported;
     }
 }

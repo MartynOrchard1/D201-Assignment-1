@@ -1,9 +1,10 @@
 namespace MovieLibrary.DataStructures;
-public class HashTable<Tkey, TValue> // Hash table to search movies via ID
-{
-    private readonly Dictionary<Tkey, TValue> table = new();
 
-    public void Add(Tkey key, TValue value) // Add the key-value pair
+public class HashTable<TKey, TValue> where TKey : notnull // Hash table to search movies via ID
+{
+    private readonly Dictionary<TKey, TValue> table = new();
+
+    public void Add(TKey key, TValue value) // Add the key-value pair
     {
         if (table.ContainsKey(key))
         {
@@ -12,13 +13,13 @@ public class HashTable<Tkey, TValue> // Hash table to search movies via ID
         table[key] = value; // Correct placement of this line
     }
 
-    public TValue Get(Tkey key) // Get value via key
+    public TValue Get(TKey key) // Get value via key
     {
         table.TryGetValue(key, out var value);
         return value;
     }
 
-    public bool ContainsKey(Tkey key) => table.ContainsKey(key);
+    public bool ContainsKey(TKey key) => table.ContainsKey(key);
 
     public List<TValue> GetAllValues() => table.Values.ToList();
 }

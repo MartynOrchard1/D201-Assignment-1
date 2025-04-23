@@ -222,28 +222,25 @@ public partial class MainWindow : Window
     {
         if (movieListBox.SelectedItem is Movie selected)
         {
-            var movie = service.SearchByID(selected.ID);
-
-            if (movie == null)
+            try
             {
-                MessageBox.Show("Movie not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                var nextUser = service.ReturnMovie(selected.ID);
+                RefreshMovieList();
 
-            if (movie.IsAvailable)
+                if (nextUser != null)
+                {
+                    MessageBox.Show($"Movie '{selected.Title}' has been returned and assigned to the next user in the queue: {nextUser}.", "Return Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                    service.AddNotification($"Movie '{selected.Title}' has been assigned to {nextUser}.");
+                }
+                else
+                {
+                    MessageBox.Show($"Movie '{selected.Title}' has been returned and is now available.", "Return Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("This movie is already marked as available.", "Already Available", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            var nextUser = service.ReturnMovie(selected.ID);
-            RefreshMovieList();
-
-            MessageBox.Show(
-                nextUser != null
-                    ? $"Movie returned and assigned to {nextUser}."
-                    : "Movie returned and is now available.",
-                "Return Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         else
         {
@@ -372,9 +369,15 @@ public partial class MainWindow : Window
 
         if (dialog.ShowDialog() == true)
         {
-            var json = JsonSerializer.Serialize(service.GetAllMovies());
+            var data = new
+            {
+                Movies = service.GetAllMovies(),
+                Notifications = service.ExportNotifications()
+            };
+
+            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(dialog.FileName, json);
-            MessageBox.Show("Movies saved!");
+            MessageBox.Show("Movies and notifications saved successfully.", "Save Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 
@@ -390,12 +393,12 @@ public partial class MainWindow : Window
             try
             {
                 var json = File.ReadAllText(dialog.FileName);
-                var loaded = JsonSerializer.Deserialize<List<Movie>>(json);
+                var data = JsonSerializer.Deserialize<SaveData>(json);
 
-                if (loaded != null)
+                if (data?.Movies != null)
                 {
                     // Validate each movie to ensure no null or invalid values
-                    foreach (var movie in loaded)
+                    foreach (var movie in data.Movies)
                     {
                         if (string.IsNullOrWhiteSpace(movie.ID) ||
                             string.IsNullOrWhiteSpace(movie.Title) ||
@@ -407,12 +410,12 @@ public partial class MainWindow : Window
                         }
                     }
 
-                    service.ReplaceAll(loaded);
+                    service.ReplaceAll(data.Movies);
                     RefreshMovieList();
 
-                    if (loaded.Any())
+                    if (data.Movies.Any())
                     {
-                        var maxId = loaded
+                        var maxId = data.Movies
                             .Select(m => int.TryParse(m.ID.TrimStart('M'), out int id) ? id : 0)
                             .Max();
                         movieCounter = maxId + 1;
@@ -422,7 +425,16 @@ public partial class MainWindow : Window
                         movieCounter = 1;
                     }
 
-                    MessageBox.Show("Movies loaded.");
+                    // Load notifications
+                    if (data.Notifications != null)
+                    {
+                        foreach (var notification in data.Notifications)
+                        {
+                            service.AddNotification(notification);
+                        }
+                    }
+
+                    MessageBox.Show("Movies and notifications loaded successfully.", "Load Complete", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
