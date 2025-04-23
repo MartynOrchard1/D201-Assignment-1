@@ -1,3 +1,4 @@
+namespace MovieLibrary.DataStructures;
 public class HashTable<Tkey, TValue> // Hash table to search movies via ID
 {
     private readonly Dictionary<Tkey, TValue> table = new();

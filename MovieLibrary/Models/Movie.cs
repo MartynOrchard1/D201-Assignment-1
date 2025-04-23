@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+namespace MovieLibrary.Models;
 
 public class Movie 
 {

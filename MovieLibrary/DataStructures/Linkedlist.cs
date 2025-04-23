@@ -1,3 +1,4 @@
+namespace MovieLibrary.DataStructures;
 public class Node<T> 
 {
     public T Data { get; set; } 

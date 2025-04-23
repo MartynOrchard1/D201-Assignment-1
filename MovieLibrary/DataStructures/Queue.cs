@@ -1,3 +1,5 @@
+namespace MovieLibrary.DataStructures;
+
 public class Queue<T>
 {
     private readonly System.Collections.Generic.Queue<T> queue = new();

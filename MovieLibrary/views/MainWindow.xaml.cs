@@ -1,12 +1,12 @@
-﻿using movielibrary.Models;
-using movielibrary.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
+using MovieLibrary.Models;
+using MovieLibrary.Services;
 
 namespace MovieLibrary.Views
 {

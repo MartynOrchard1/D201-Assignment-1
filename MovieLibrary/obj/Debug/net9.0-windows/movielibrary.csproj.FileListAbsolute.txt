@@ -1,8 +1,3 @@
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\bin\Debug\net9.0-windows\movielibrary.exe
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\bin\Debug\net9.0-windows\movielibrary.deps.json
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\bin\Debug\net9.0-windows\movielibrary.runtimeconfig.json
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\bin\Debug\net9.0-windows\movielibrary.dll
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\bin\Debug\net9.0-windows\movielibrary.pdb
 C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\views\MainWindow.baml
 C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\views\MainWindow.g.cs
 C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\App.g.cs
@@ -13,8 +8,3 @@ C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0
 C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\movielibrary.AssemblyInfo.cs
 C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\movielibrary.csproj.CoreCompileInputs.cache
 C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\movielibrary.sourcelink.json
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\movielibrary.dll
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\refint\movielibrary.dll
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\movielibrary.pdb
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\movielibrary.genruntimeconfig.cache
-C:\Users\ASUSLP\Documents\GitHub\D201-Assignment-1\movielibrary\obj\Debug\net9.0-windows\ref\movielibrary.dll
