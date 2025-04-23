@@ -1,8 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
+namespace MovieLibrary.Models;
 
 public class Movie 
 {
-    public int ID { get; set; }
+    public string ID { get; set; }
     public required string Title { get; set; } 
     public required string Director { get; set; } 
     public required string Genre { get; set; } 
