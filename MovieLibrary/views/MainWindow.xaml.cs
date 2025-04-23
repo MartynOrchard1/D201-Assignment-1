@@ -239,5 +239,12 @@ namespace MovieLibrary.Views
                 txtYear.Text = selected.ReleaseYear.ToString();
             }
         }
+
+        // Refresh the movie list in the UI
+        private void RefreshMovieList()
+        {
+            movieListBox.ItemsSource = null; // Clear the current list
+            movieListBox.ItemsSource = service.GetAllMovies(); // Load the updated list of movies
+        }
     }
 }
