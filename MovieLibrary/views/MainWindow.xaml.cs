@@ -26,12 +26,108 @@ public partial class MainWindow : Window
 
     private void AddMovie_Click(object sender, RoutedEventArgs e)
     {
+        // Validate empty fields
+        if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
+            string.IsNullOrWhiteSpace(txtDirector.Text) ||
+            string.IsNullOrWhiteSpace(txtGenre.Text) ||
+            string.IsNullOrWhiteSpace(txtYear.Text))
+        {
+            MessageBox.Show("Please fill in all fields before adding a movie.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Validate year input
+        if (!int.TryParse(txtYear.Text, out int year))
+        {
+            MessageBox.Show("Release Year must be a valid number (e.g., 2020).", "Invalid Year", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        // Validate title (letters, numbers, spaces allowed)
+        if (!System.Text.RegularExpressions.Regex.IsMatch(txtTitle.Text, @"^[a-zA-Z0-9\s]+$"))
+        {
+            MessageBox.Show("Title can only contain letters, numbers, and spaces (no special characters).", "Invalid Title", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Validate director (letters and spaces only)
+        if (!System.Text.RegularExpressions.Regex.IsMatch(txtDirector.Text, @"^[a-zA-Z\s]+$"))
+        {
+            MessageBox.Show("Director name can only contain letters and spaces.", "Invalid Director", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Validate genre (letters and spaces only)
+        if (!System.Text.RegularExpressions.Regex.IsMatch(txtGenre.Text, @"^[a-zA-Z\s]+$"))
+        {
+            MessageBox.Show("Genre can only contain letters and spaces.", "Invalid Genre", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Check for Duplicate title
+        bool isDuplicate = service.GetAllMovies()
+        .Any(m => m.Title.Equals(txtTitle.Text.Trim(), StringComparison.OrdinalIgnoreCase));
+        if (isDuplicate)
+        {
+            MessageBox.Show("A movie with this title already exists.", "Duplicate Title", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Make sure the year is realistic
+        if (year < 1888 || year > DateTime.Now.Year + 1)
+        {
+            MessageBox.Show($"Please enter a realistic year between 1888 and {DateTime.Now.Year + 1}.", "Invalid Year", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Make sure the title is not too long
+        if (txtTitle.Text.Trim().Length > 100)
+        {
+            MessageBox.Show("Title is too long. Please keep it under 100 characters.", "Title Too Long", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Make sure the director name is not too short
+        if (txtDirector.Text.Trim().Length < 2)
+        {
+            MessageBox.Show("Director name is too short.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Make sure the genre is not too short
+        if (txtGenre.Text.Trim().Length < 3)
+        {
+            MessageBox.Show("Genre must be at least 3 characters long.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Make sure the year is not in the future
+        if (year > DateTime.Now.Year)
+        {
+            MessageBox.Show("The release year can't be in the future.", "Invalid Year", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Check for exact duplicate (same title, director, and year)
+        bool exactDuplicate = service.GetAllMovies()
+            .Any(m =>
+                m.Title.Equals(txtTitle.Text.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                m.Director.Equals(txtDirector.Text.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                m.ReleaseYear == year);
+
+        if (exactDuplicate)
+        {
+            MessageBox.Show("An identical movie already exists with the same title, director, and year.", "Duplicate Movie", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Create movie if all validations pass
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
-            Title = txtTitle.Text.Trim().ToUpper(),
-            Director = txtDirector.Text.Trim().ToUpper(),
-            Genre = txtGenre.Text.Trim().ToUpper(),
+            Title = txtTitle.Text.Trim(),
+            Director = txtDirector.Text.Trim(),
+            Genre = txtGenre.Text.Trim(),
             ReleaseYear = int.Parse(txtYear.Text)
         };
 
@@ -55,13 +151,26 @@ public partial class MainWindow : Window
         {
             try
             {
-                service.BorrowMovie(selectedMovie.ID, "User1");
+                if (selectedMovie.IsAvailable)
+                {
+                    service.BorrowMovie(selectedMovie.ID, "User1");
+                    MessageBox.Show($"Movie '{selectedMovie.Title}' has been borrowed successfully.", "Borrow Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    service.AddToWaitingQueue(selectedMovie.ID, "User1");
+                    MessageBox.Show($"Movie '{selectedMovie.Title}' is currently unavailable. You have been added to the waiting queue.", "Added to Queue", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
                 RefreshMovieList();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        else
+        {
+            MessageBox.Show("Please select a movie to borrow.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 
@@ -70,6 +179,22 @@ public partial class MainWindow : Window
         if (movieListBox.SelectedItem is not Movie selected)
         {
             MessageBox.Show("Please select a movie to edit.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        // Show confirmation dialog
+        var confirm = MessageBox.Show
+        (
+            $"Are you sure you want to edit the movie '{selected.Title}'?", 
+            "Confirm Edit", 
+            MessageBoxButton.YesNo, 
+            MessageBoxImage.Question
+        );
+
+        // Confirmation dialog
+        if ( confirm != MessageBoxResult.Yes)
+        {
+            // User chose not to edit
             return;
         }
 
@@ -97,28 +222,25 @@ public partial class MainWindow : Window
     {
         if (movieListBox.SelectedItem is Movie selected)
         {
-            var movie = service.SearchByID(selected.ID);
-
-            if (movie == null)
+            try
             {
-                MessageBox.Show("Movie not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                var nextUser = service.ReturnMovie(selected.ID);
+                RefreshMovieList();
 
-            if (movie.IsAvailable)
+                if (nextUser != null)
+                {
+                    MessageBox.Show($"Movie '{selected.Title}' has been returned and assigned to the next user in the queue: {nextUser}.", "Return Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                    service.AddNotification($"Movie '{selected.Title}' has been assigned to {nextUser}.");
+                }
+                else
+                {
+                    MessageBox.Show($"Movie '{selected.Title}' has been returned and is now available.", "Return Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("This movie is already marked as available.", "Already Available", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            var nextUser = service.ReturnMovie(selected.ID);
-            RefreshMovieList();
-
-            MessageBox.Show(
-                nextUser != null
-                    ? $"Movie returned and assigned to {nextUser}."
-                    : "Movie returned and is now available.",
-                "Return Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         else
         {
@@ -247,9 +369,15 @@ public partial class MainWindow : Window
 
         if (dialog.ShowDialog() == true)
         {
-            var json = JsonSerializer.Serialize(service.GetAllMovies());
+            var data = new
+            {
+                Movies = service.GetAllMovies(),
+                Notifications = service.ExportNotifications()
+            };
+
+            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(dialog.FileName, json);
-            MessageBox.Show("Movies saved!");
+            MessageBox.Show("Movies and notifications saved successfully.", "Save Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 
@@ -265,12 +393,12 @@ public partial class MainWindow : Window
             try
             {
                 var json = File.ReadAllText(dialog.FileName);
-                var loaded = JsonSerializer.Deserialize<List<Movie>>(json);
+                var data = JsonSerializer.Deserialize<SaveData>(json);
 
-                if (loaded != null)
+                if (data?.Movies != null)
                 {
                     // Validate each movie to ensure no null or invalid values
-                    foreach (var movie in loaded)
+                    foreach (var movie in data.Movies)
                     {
                         if (string.IsNullOrWhiteSpace(movie.ID) ||
                             string.IsNullOrWhiteSpace(movie.Title) ||
@@ -282,12 +410,12 @@ public partial class MainWindow : Window
                         }
                     }
 
-                    service.ReplaceAll(loaded);
+                    service.ReplaceAll(data.Movies);
                     RefreshMovieList();
 
-                    if (loaded.Any())
+                    if (data.Movies.Any())
                     {
-                        var maxId = loaded
+                        var maxId = data.Movies
                             .Select(m => int.TryParse(m.ID.TrimStart('M'), out int id) ? id : 0)
                             .Max();
                         movieCounter = maxId + 1;
@@ -297,7 +425,16 @@ public partial class MainWindow : Window
                         movieCounter = 1;
                     }
 
-                    MessageBox.Show("Movies loaded.");
+                    // Load notifications
+                    if (data.Notifications != null)
+                    {
+                        foreach (var notification in data.Notifications)
+                        {
+                            service.AddNotification(notification);
+                        }
+                    }
+
+                    MessageBox.Show("Movies and notifications loaded successfully.", "Load Complete", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {

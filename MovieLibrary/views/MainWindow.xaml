@@ -129,7 +129,7 @@
                  Margin="0"
                  Background="LightGray"
                  Foreground="Black"
-                 >
+                 SelectionChanged="movieListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Gray" BorderThickness="1" Padding="8" Margin="4" Background="White">
