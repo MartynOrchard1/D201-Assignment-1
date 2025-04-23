@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace MovieLibrary.Views
 {
@@ -269,6 +270,48 @@ namespace MovieLibrary.Views
                 var json = JsonSerializer.Serialize(service.GetAllMovies()); // Serialize the movie list to JSON
                 File.WriteAllText(dialog.FileName, json); // Save the JSON to the selected file
                 MessageBox.Show("Movies saved!"); // Notify the user
+            }
+        }
+
+        // Load list of movies from a JSON file
+        private void LoadFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                Filter = "JSON Files (*.json)|*.json" // Restrict file type to JSON
+            };
+
+            if (dialog.ShowDialog() == true) // If the user selects a file
+            {
+                try
+                {
+                    var json = File.ReadAllText(dialog.FileName); // Read the JSON file
+                    var loaded = JsonSerializer.Deserialize<List<Movie>>(json); // Deserialize the JSON into a list of movies
+                    if (loaded != null)
+                    {
+                        service.ReplaceAll(loaded); // Replace the current movie list with the loaded list
+                        RefreshMovieList(); // Refresh the UI to display the new list
+
+                        // Update movieCounter based on the highest MovieID in the loaded list
+                        if (loaded.Any())
+                        {
+                            var maxId = loaded
+                                .Select(m => int.TryParse(m.MovieID.TrimStart('M'), out int id) ? id : 0) // Extract numeric part of MovieID
+                                .Max(); // Find the highest ID
+                            movieCounter = maxId + 1; // Set movieCounter to the next available ID
+                        }
+                        else
+                        {
+                            movieCounter = 1; // Reset if the list is empty
+                        }
+
+                        MessageBox.Show("Movies loaded."); // Notify the user
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to load file."); // Notify the user if an error occurs
+                }
             }
         }
     }
