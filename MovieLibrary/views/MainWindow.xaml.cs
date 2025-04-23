@@ -169,6 +169,18 @@ public partial class MainWindow : Window
             return;
         }
 
+        // Show confirmation dialog
+        var confirm = MessageBox.Show($"Are you sure you want to edit the movie '{selected.Title}'?", 
+                                       "Confirm Edit", 
+                                       MessageBoxButton.YesNo, 
+                                       MessageBoxImage.Question);
+
+        if (confirm != MessageBoxResult.Yes)
+        {
+            // User chose not to proceed
+            return;
+        }
+
         if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
             string.IsNullOrWhiteSpace(txtDirector.Text) ||
             string.IsNullOrWhiteSpace(txtGenre.Text) ||
