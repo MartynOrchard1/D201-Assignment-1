@@ -50,6 +50,13 @@ public partial class MainWindow : Window
             return;
         }
 
+        // Validate director (letters and spaces only)
+        if (!System.Text.RegularExpressions.Regex.IsMatch(txtDirector.Text, @"^[a-zA-Z\s]+$"))
+        {
+            MessageBox.Show("Director name can only contain letters and spaces.", "Invalid Director", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
