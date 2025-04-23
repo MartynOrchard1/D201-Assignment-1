@@ -26,6 +26,12 @@ public partial class MainWindow : Window
 
     private void AddMovie_Click(object sender, RoutedEventArgs e)
     {
+        // Validate empty fields
+        if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
+            string.IsNullOrWhiteSpace(txtDirector.Text) ||
+            string.IsNullOrWhiteSpace(txtGenre.Text) ||
+            string.IsNullOrWhiteSpace(txtYear.Text))
+
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
