@@ -165,5 +165,43 @@ namespace MovieLibrary.Views
             movieListBox.ItemsSource = sorted;
             isIdAscending = !isIdAscending;
         }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            if (cmbSearchType.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string searchType = selectedItem.Content.ToString();
+                string searchText = txtSearch.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    MessageBox.Show("Please enter a search term.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (searchType == "Search by Title")
+                {
+                    var results = service.SearchByTitle(searchText);
+                    if (results.Count == 0)
+                    {
+                        MessageBox.Show("No movies found with the given title.", "Search Result", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+
+                    movieListBox.ItemsSource = results;
+                }
+                else if (searchType == "Search by MovieID")
+                {
+                    var result = service.GetAllMovies().FirstOrDefault(m => m.MovieID.Equals(searchText, StringComparison.OrdinalIgnoreCase));
+                    if (result == null)
+                    {
+                        MessageBox.Show("No movie found with the given MovieID.", "Search Result", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+
+                    movieListBox.ItemsSource = new List<Movie> { result };
+                }
+            }
+        }
     }
 }
