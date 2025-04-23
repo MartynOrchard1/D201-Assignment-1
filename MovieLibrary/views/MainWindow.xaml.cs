@@ -96,5 +96,41 @@ namespace MovieLibrary.Views
 
             MessageBox.Show("Movie updated successfully.", "Edit Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            if (movieListBox.SelectedItem is Movie selected)
+            {
+                var movie = service.SearchByID(selected.MovieID);
+
+                if (movie == null)
+                {
+                    MessageBox.Show("Movie not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (movie.IsAvailable)
+                {
+                    MessageBox.Show("This movie is already marked as available. It may have already been returned.", "Already Available", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                var nextUser = service.ReturnMovie(selected.MovieID);
+                RefreshMovieList();
+
+                if (nextUser != null)
+                {
+                    MessageBox.Show($"Movie returned successfully and has been assigned to {nextUser}.", "Next User Notified", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Movie returned successfully and is now available for borrowing.", "Returned", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a movie to return.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }
