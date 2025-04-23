@@ -151,13 +151,26 @@ public partial class MainWindow : Window
         {
             try
             {
-                service.BorrowMovie(selectedMovie.ID, "User1");
+                if (selectedMovie.IsAvailable)
+                {
+                    service.BorrowMovie(selectedMovie.ID, "User1");
+                    MessageBox.Show($"Movie '{selectedMovie.Title}' has been borrowed successfully.", "Borrow Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    service.AddToWaitingQueue(selectedMovie.ID, "User1");
+                    MessageBox.Show($"Movie '{selectedMovie.Title}' is currently unavailable. You have been added to the waiting queue.", "Added to Queue", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
                 RefreshMovieList();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        else
+        {
+            MessageBox.Show("Please select a movie to borrow.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 
