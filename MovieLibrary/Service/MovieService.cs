@@ -26,6 +26,27 @@ namespace MovieLibrary.Services
             return movieList.ToList().Where(m => m.Title.Contains(title, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
-        
+        public void BorrowMovie(string id, string user)
+        {
+            var movie = SearchByID(id);
+            if (movie == null) return;
+            if (movie.IsAvailable) movie.IsAvailable = false;
+            else
+            {
+                if (!waitingLists.ContainsKey(id)) waitingLists[id] = new MovieLibrary.DataStructures.Queue<string>();
+                waitingLists[id].Enqueue(user);
+            }
+        }
+
+        public string ReturnMovie(string id)
+        {
+            var movie = SearchByID(id);
+            if (movie == null) return null;
+            if (waitingLists.ContainsKey(id) && !waitingLists[id].IsEmpty())
+                return waitingLists[id].Dequeue();
+            movie.IsAvailable = true;
+            return null;
+        }
+
     }
 }
