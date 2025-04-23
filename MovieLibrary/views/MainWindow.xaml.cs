@@ -125,9 +125,9 @@ public partial class MainWindow : Window
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
-            Title = txtTitle.Text.Trim().ToUpper(),
-            Director = txtDirector.Text.Trim().ToUpper(),
-            Genre = txtGenre.Text.Trim().ToUpper(),
+            Title = txtTitle.Text.Trim(),
+            Director = txtDirector.Text.Trim(),
+            Genre = txtGenre.Text.Trim(),
             ReleaseYear = int.Parse(txtYear.Text)
         };
 
