@@ -51,5 +51,20 @@ namespace MovieLibrary.Views
             }
         }
 
+        private void Borrow_Click(object sender, RoutedEventArgs e)
+        {
+            if (movieList.SelectedItem is Movie selectedMovie)
+            {
+                try
+                {
+                    service.BorrowMovie(selectedMovie.MovieID);
+                    RefreshMovieList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }
