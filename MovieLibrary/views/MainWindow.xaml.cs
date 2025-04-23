@@ -203,5 +203,11 @@ namespace MovieLibrary.Views
                 }
             }
         }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshMovieList();
+            txtSearch.Clear();
+        }
     }
 }
