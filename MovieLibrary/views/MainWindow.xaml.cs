@@ -46,7 +46,8 @@ public partial class MainWindow : Window
         // Validate title (letters, numbers, spaces allowed)
         if (!System.Text.RegularExpressions.Regex.IsMatch(txtTitle.Text, @"^[a-zA-Z0-9\s]+$"))
         {
-            
+            MessageBox.Show("Title can only contain letters, numbers, and spaces (no special characters).", "Invalid Title", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
         }
 
         var movie = new Movie
