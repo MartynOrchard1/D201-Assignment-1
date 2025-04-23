@@ -170,14 +170,18 @@ public partial class MainWindow : Window
         }
 
         // Show confirmation dialog
-        var confirm = MessageBox.Show($"Are you sure you want to edit the movie '{selected.Title}'?", 
-                                       "Confirm Edit", 
-                                       MessageBoxButton.YesNo, 
-                                       MessageBoxImage.Question);
+        var confirm = MessageBox.Show
+        (
+            $"Are you sure you want to edit the movie '{selected.Title}'?", 
+            "Confirm Edit", 
+            MessageBoxButton.YesNo, 
+            MessageBoxImage.Question
+        );
 
-        if (confirm != MessageBoxResult.Yes)
+        // Confirmation dialog
+        if ( confirm != MessageBoxResult.Yes)
         {
-            // User chose not to proceed
+            // User chose not to edit
             return;
         }
 
