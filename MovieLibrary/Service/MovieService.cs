@@ -10,9 +10,9 @@ public class MovieService
 
     public void AddMovie(Movie movie)
     {
-        if (movieTable.ContainsKey(movie.MovieID))
+        if (movieTable.ContainsKey(movie.ID))
             throw new Exception("Duplicate Movie ID");
-        movieTable.Add(movie.MovieID, movie);
+        movieTable.Add(movie.ID, movie);
         movieList.Add(movie);
     }
 
@@ -20,30 +20,33 @@ public class MovieService
 
     public Movie SearchByID(string id) => movieTable.Get(id);
 
-    public List<Movie> SearchByTitle(string title)
-    {
-        return movieList.ToList().Where(m => m.Title.Contains(title, StringComparison.OrdinalIgnoreCase)).ToList();
-    }
+    public List<Movie> SearchByTitle(string title) =>
+        movieList.ToList().Where(m => m.Title.Contains(title, StringComparison.OrdinalIgnoreCase)).ToList();
 
     public void BorrowMovie(string id, string user)
     {
         var movie = SearchByID(id);
-        if (movie == null) return;
-        if (movie.IsAvailable) movie.IsAvailable = false;
-        else
+        if (movie == null || !movie.IsAvailable)
         {
-            if (!waitingLists.ContainsKey(id)) waitingLists[id] = new MovieLibrary.DataStructures.Queue<string>();
+            if (!waitingLists.ContainsKey(id))
+                waitingLists[id] = new();
             waitingLists[id].Enqueue(user);
+            return;
         }
+
+        movie.IsAvailable = false;
     }
 
     public string ReturnMovie(string id)
     {
         var movie = SearchByID(id);
-        if (movie == null) return null;
-        if (waitingLists.ContainsKey(id) && !waitingLists[id].IsEmpty())
-            return waitingLists[id].Dequeue();
         movie.IsAvailable = true;
+
+        if (waitingLists.ContainsKey(id) && !waitingLists[id].IsEmpty())
+        {
+            return waitingLists[id].Dequeue();
+        }
+
         return null;
     }
 
