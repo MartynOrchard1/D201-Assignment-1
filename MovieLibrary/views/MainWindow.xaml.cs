@@ -64,6 +64,17 @@ public partial class MainWindow : Window
             return;
         }
 
+        // Check for Duplicate title
+        bool isDuplicate = service.GetAllMovies()
+        .Any(m => m.Title.Equals(txtTitle.Text.Trim(), StringComparison.OrdinalIgnoreCase));
+        if (isDuplicate)
+        {
+            MessageBox.Show("A movie with this title already exists.", "Duplicate Title", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        
+
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
