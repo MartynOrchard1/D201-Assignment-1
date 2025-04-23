@@ -66,5 +66,35 @@ namespace MovieLibrary.Views
                 }
             }
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (movieListBox.SelectedItem is not Movie selected)
+            {
+                MessageBox.Show("Please select a movie to edit.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Validate fields (same as AddMovie_Click)
+            if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
+                string.IsNullOrWhiteSpace(txtDirector.Text) ||
+                string.IsNullOrWhiteSpace(txtGenre.Text) ||
+                string.IsNullOrWhiteSpace(txtYear.Text))
+            {
+                MessageBox.Show("Please fill in all fields before editing.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Update the selected movie
+            selected.Title = txtTitle.Text.Trim();
+            selected.Director = txtDirector.Text.Trim();
+            selected.Genre = txtGenre.Text.Trim();
+            selected.ReleaseYear = year;
+
+            // RefreshMovieList();
+            // ClearInputFields();
+
+            MessageBox.Show("Movie updated successfully.", "Edit Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
