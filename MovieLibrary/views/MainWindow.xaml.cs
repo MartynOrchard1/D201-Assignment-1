@@ -42,7 +42,13 @@ public partial class MainWindow : Window
             MessageBox.Show("Release Year must be a valid number (e.g., 2020).", "Invalid Year", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
-        
+
+        // Validate title (letters, numbers, spaces allowed)
+        if (!System.Text.RegularExpressions.Regex.IsMatch(txtTitle.Text, @"^[a-zA-Z0-9\s]+$"))
+        {
+            
+        }
+
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
