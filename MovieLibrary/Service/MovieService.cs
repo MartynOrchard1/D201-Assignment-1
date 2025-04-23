@@ -48,5 +48,52 @@ namespace MovieLibrary.Services
             return null;
         }
 
+        public List<Movie> BubbleSortByTitle()
+        {
+            var list = movieList.ToList();
+            for (int i = 0; i < list.Count - 1; i++)
+                for (int j = 0; j < list.Count - i - 1; j++)
+                    if (list[j].Title.CompareTo(list[j + 1].Title) > 0)
+                        (list[j], list[j + 1]) = (list[j + 1], list[j]);
+            return list;
+        }
+
+        public List<Movie> MergeSortByYear()
+        {
+            return MergeSort(movieList.ToList());
+        }
+
+        public List<Movie> SortByID()
+        {
+            var list = movieList.ToList();
+            list.Sort((a, b) => a.MovieID.CompareTo(b.MovieID));
+            return list;
+        }
+
+
+        private List<Movie> MergeSort(List<Movie> list)
+        {
+            if (list.Count <= 1) return list;
+            int mid = list.Count / 2;
+            var left = MergeSort(list.GetRange(0, mid));
+            var right = MergeSort(list.GetRange(mid, list.Count - mid));
+            return Merge(left, right);
+        }
+
+        private List<Movie> Merge(List<Movie> left, List<Movie> right)
+        {
+            List<Movie> result = new();
+            int i = 0, j = 0;
+            while (i < left.Count && j < right.Count)
+            {
+                if (left[i].ReleaseYear <= right[j].ReleaseYear) result.Add(left[i++]);
+                else result.Add(right[j++]);
+            }
+            result.AddRange(left.Skip(i));
+            result.AddRange(right.Skip(j));
+            return result;
+        }
+
+
     }
 }
