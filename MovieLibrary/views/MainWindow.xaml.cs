@@ -31,7 +31,18 @@ public partial class MainWindow : Window
             string.IsNullOrWhiteSpace(txtDirector.Text) ||
             string.IsNullOrWhiteSpace(txtGenre.Text) ||
             string.IsNullOrWhiteSpace(txtYear.Text))
+        {
+            MessageBox.Show("Please fill in all fields before adding a movie.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
 
+        // Validate year input
+        if (!int.TryParse(txtYear.Text, out int year))
+        {
+            MessageBox.Show("Release Year must be a valid number (e.g., 2020).", "Invalid Year", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+        
         var movie = new Movie
         {
             ID = $"M{movieCounter:D3}",
