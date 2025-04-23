@@ -136,7 +136,7 @@
                         <StackPanel>
                             <TextBlock FontWeight="Bold" FontSize="14">
                                 <Run Text="ID: "/>
-                                <Run Text="{Binding MovieID}"/>
+                                <Run Text="{Binding ID}"/>
                             </TextBlock>
                             <TextBlock>
                                 <Run Text="Title: " FontWeight="Bold"/>
