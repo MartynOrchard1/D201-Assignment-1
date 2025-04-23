@@ -256,6 +256,20 @@ namespace MovieLibrary.Views
             txtYear.Clear();
         }
 
-        
+        // Save list of movies to a JSON file
+        private void SaveToFile_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog
+            {
+                Filter = "JSON Files (*.json)|*.json" // Restrict file type to JSON
+            };
+
+            if (dialog.ShowDialog() == true) // If the user selects a file
+            {
+                var json = JsonSerializer.Serialize(service.GetAllMovies()); // Serialize the movie list to JSON
+                File.WriteAllText(dialog.FileName, json); // Save the JSON to the selected file
+                MessageBox.Show("Movies saved!"); // Notify the user
+            }
+        }
     }
 }
