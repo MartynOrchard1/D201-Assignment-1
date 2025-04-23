@@ -2,6 +2,7 @@ using MovieLibrary.Models;
 using MovieLibrary.DataStructures;
 
 namespace MovieLibrary.Services;
+
 public class MovieService
 {
     private HashTable<string, Movie> movieTable = new();
@@ -12,6 +13,7 @@ public class MovieService
     {
         if (movieTable.ContainsKey(movie.ID))
             throw new Exception("Duplicate Movie ID");
+
         movieTable.Add(movie.ID, movie);
         movieList.Add(movie);
     }
@@ -21,7 +23,9 @@ public class MovieService
     public Movie SearchByID(string id) => movieTable.Get(id);
 
     public List<Movie> SearchByTitle(string title) =>
-        movieList.ToList().Where(m => m.Title.Contains(title, StringComparison.OrdinalIgnoreCase)).ToList();
+        movieList.ToList()
+                 .Where(m => m.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
+                 .ToList();
 
     public void BorrowMovie(string id, string user)
     {
@@ -40,9 +44,12 @@ public class MovieService
     public string ReturnMovie(string id)
     {
         var movie = SearchByID(id);
+        if (movie == null)
+            throw new Exception("Movie not found");
+
         movie.IsAvailable = true;
 
-        if (waitingLists.ContainsKey(id) && !waitingLists[id].IsEmpty())
+        if (waitingLists.ContainsKey(id) && waitingLists[id].Count() > 0)
         {
             return waitingLists[id].Dequeue();
         }
@@ -60,18 +67,14 @@ public class MovieService
         return list;
     }
 
-    public List<Movie> MergeSortByYear()
-    {
-        return MergeSort(movieList.ToList());
-    }
+    public List<Movie> MergeSortByYear() => MergeSort(movieList.ToList());
 
     public List<Movie> SortByID()
     {
         var list = movieList.ToList();
-        list.Sort((a, b) => a.MovieID.CompareTo(b.MovieID));
+        list.Sort((a, b) => a.ID.CompareTo(b.ID));
         return list;
     }
-
 
     private List<Movie> MergeSort(List<Movie> list)
     {
@@ -88,8 +91,10 @@ public class MovieService
         int i = 0, j = 0;
         while (i < left.Count && j < right.Count)
         {
-            if (left[i].ReleaseYear <= right[j].ReleaseYear) result.Add(left[i++]);
-            else result.Add(right[j++]);
+            if (left[i].ReleaseYear <= right[j].ReleaseYear)
+                result.Add(left[i++]);
+            else
+                result.Add(right[j++]);
         }
         result.AddRange(left.Skip(i));
         result.AddRange(right.Skip(j));
@@ -99,18 +104,15 @@ public class MovieService
     public void DeleteMovieById(string id)
     {
         var allMovies = movieList.ToList();
-        var updated = allMovies.Where(m => m.MovieID != id).ToList();
+        var updated = allMovies.Where(m => m.ID != id).ToList();
 
-        // Rebuild the linked list
         movieList = new MovieLibrary.DataStructures.LinkedList<Movie>();
-
-        // Rebuild the hash table
         movieTable = new MovieLibrary.DataStructures.HashTable<string, Movie>();
 
         foreach (var movie in updated)
         {
             movieList.Add(movie);
-            movieTable.Add(movie.MovieID, movie);
+            movieTable.Add(movie.ID, movie);
         }
     }
 
@@ -122,7 +124,7 @@ public class MovieService
         foreach (var movie in movies)
         {
             movieList.Add(movie);
-            movieTable.Add(movie.MovieID, movie);
+            movieTable.Add(movie.ID, movie);
         }
     }
 }

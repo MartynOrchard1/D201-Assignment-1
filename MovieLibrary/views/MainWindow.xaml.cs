@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,12 +18,11 @@ public partial class MainWindow : Window
     private bool isTitleAscending = true;
     private bool isYearAscending = true;
     private bool isIdAscending = true;
-    
+
     public MainWindow()
     {
         InitializeComponent();
     }
-
 
     private void AddMovie_Click(object sender, RoutedEventArgs e)
     {
@@ -49,11 +49,11 @@ public partial class MainWindow : Window
 
     private void Borrow_Click(object sender, RoutedEventArgs e)
     {
-        if (movieList.SelectedItem is Movie selectedMovie)
+        if (movieListBox.SelectedItem is Movie selectedMovie)
         {
             try
             {
-                service.BorrowMovie(selectedMovie.MovieID);
+                service.BorrowMovie(selectedMovie.ID, "User1");
                 RefreshMovieList();
             }
             catch (Exception ex)
@@ -71,7 +71,6 @@ public partial class MainWindow : Window
             return;
         }
 
-        // Validate fields (same as AddMovie_Click)
         if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
             string.IsNullOrWhiteSpace(txtDirector.Text) ||
             string.IsNullOrWhiteSpace(txtGenre.Text) ||
@@ -81,14 +80,13 @@ public partial class MainWindow : Window
             return;
         }
 
-        // Update the selected movie
         selected.Title = txtTitle.Text.Trim();
         selected.Director = txtDirector.Text.Trim();
         selected.Genre = txtGenre.Text.Trim();
-        selected.ReleaseYear = year;
+        selected.ReleaseYear = int.Parse(txtYear.Text);
 
-        // RefreshMovieList();
-        // ClearInputFields();
+        RefreshMovieList();
+        ClearInputFields();
 
         MessageBox.Show("Movie updated successfully.", "Edit Complete", MessageBoxButton.OK, MessageBoxImage.Information);
     }
@@ -97,7 +95,7 @@ public partial class MainWindow : Window
     {
         if (movieListBox.SelectedItem is Movie selected)
         {
-            var movie = service.SearchByID(selected.MovieID);
+            var movie = service.SearchByID(selected.ID);
 
             if (movie == null)
             {
@@ -107,21 +105,18 @@ public partial class MainWindow : Window
 
             if (movie.IsAvailable)
             {
-                MessageBox.Show("This movie is already marked as available. It may have already been returned.", "Already Available", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("This movie is already marked as available.", "Already Available", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
-            var nextUser = service.ReturnMovie(selected.MovieID);
+            var nextUser = service.ReturnMovie(selected.ID);
             RefreshMovieList();
 
-            if (nextUser != null)
-            {
-                MessageBox.Show($"Movie returned successfully and has been assigned to {nextUser}.", "Next User Notified", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("Movie returned successfully and is now available for borrowing.", "Returned", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            MessageBox.Show(
+                nextUser != null
+                    ? $"Movie returned and assigned to {nextUser}."
+                    : "Movie returned and is now available.",
+                "Return Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         else
         {
@@ -132,32 +127,23 @@ public partial class MainWindow : Window
     private void SortTitle_Click(object sender, RoutedEventArgs e)
     {
         var sorted = service.BubbleSortByTitle();
-
-        if (!isTitleAscending)
-            sorted.Reverse();
-
+        if (!isTitleAscending) sorted.Reverse();
         movieListBox.ItemsSource = sorted;
-        isTitleAscending = !isTitleAscending; // Toggle sort direction
+        isTitleAscending = !isTitleAscending;
     }
 
     private void SortYear_Click(object sender, RoutedEventArgs e)
     {
         var sorted = service.MergeSortByYear();
-
-        if (!isYearAscending)
-            sorted.Reverse();
-
+        if (!isYearAscending) sorted.Reverse();
         movieListBox.ItemsSource = sorted;
-        isYearAscending = !isYearAscending; // Toggle sort direction
+        isYearAscending = !isYearAscending;
     }
 
     private void SortID_Click(object sender, RoutedEventArgs e)
     {
         var sorted = service.SortByID();
-
-        if (!isIdAscending)
-            sorted.Reverse();
-
+        if (!isIdAscending) sorted.Reverse();
         movieListBox.ItemsSource = sorted;
         isIdAscending = !isIdAscending;
     }
@@ -180,7 +166,7 @@ public partial class MainWindow : Window
                 var results = service.SearchByTitle(searchText);
                 if (results.Count == 0)
                 {
-                    MessageBox.Show("No movies found with the given title.", "Search Result", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("No movies found.", "Search Result", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
 
@@ -188,10 +174,10 @@ public partial class MainWindow : Window
             }
             else if (searchType == "Search by MovieID")
             {
-                var result = service.GetAllMovies().FirstOrDefault(m => m.MovieID.Equals(searchText, StringComparison.OrdinalIgnoreCase));
+                var result = service.GetAllMovies().FirstOrDefault(m => m.ID.Equals(searchText, StringComparison.OrdinalIgnoreCase));
                 if (result == null)
                 {
-                    MessageBox.Show("No movie found with the given MovieID.", "Search Result", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("No movie found with the given ID.", "Search Result", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
 
@@ -213,7 +199,7 @@ public partial class MainWindow : Window
             var confirm = MessageBox.Show($"Are you sure you want to delete '{selected.Title}'?", "Confirm Delete", MessageBoxButton.YesNo);
             if (confirm == MessageBoxResult.Yes)
             {
-                service.DeleteMovieById(selected.MovieID);
+                service.DeleteMovieById(selected.ID);
                 RefreshMovieList();
                 ClearInputFields();
                 MessageBox.Show("Movie deleted successfully.", "Delete Complete", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -225,7 +211,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void movieListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    private void movieListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (movieListBox.SelectedItem is Movie selected)
         {
@@ -236,14 +222,12 @@ public partial class MainWindow : Window
         }
     }
 
-    // Refresh the movie list in the UI
     private void RefreshMovieList()
     {
-        movieListBox.ItemsSource = null; // Clear the current list
-        movieListBox.ItemsSource = service.GetAllMovies(); // Load the updated list of movies
+        movieListBox.ItemsSource = null;
+        movieListBox.ItemsSource = service.GetAllMovies();
     }
 
-    // Clear all input fields in the form
     private void ClearInputFields()
     {
         txtTitle.Clear();
@@ -252,60 +236,58 @@ public partial class MainWindow : Window
         txtYear.Clear();
     }
 
-    // Save list of movies to a JSON file
     private void SaveToFile_Click(object sender, RoutedEventArgs e)
     {
         SaveFileDialog dialog = new SaveFileDialog
         {
-            Filter = "JSON Files (*.json)|*.json" // Restrict file type to JSON
+            Filter = "JSON Files (*.json)|*.json"
         };
 
-        if (dialog.ShowDialog() == true) // If the user selects a file
+        if (dialog.ShowDialog() == true)
         {
-            var json = JsonSerializer.Serialize(service.GetAllMovies()); // Serialize the movie list to JSON
-            File.WriteAllText(dialog.FileName, json); // Save the JSON to the selected file
-            MessageBox.Show("Movies saved!"); // Notify the user
+            var json = JsonSerializer.Serialize(service.GetAllMovies());
+            File.WriteAllText(dialog.FileName, json);
+            MessageBox.Show("Movies saved!");
         }
     }
 
-    // Load list of movies from a JSON file
     private void LoadFromFile_Click(object sender, RoutedEventArgs e)
     {
         OpenFileDialog dialog = new OpenFileDialog
         {
-            Filter = "JSON Files (*.json)|*.json" // Restrict file type to JSON
+            Filter = "JSON Files (*.json)|*.json"
         };
 
-        if (dialog.ShowDialog() == true) // If the user selects a file
+        if (dialog.ShowDialog() == true)
         {
             try
             {
-                var json = File.ReadAllText(dialog.FileName); // Read the JSON file
-                var loaded = JsonSerializer.Deserialize<List<Movie>>(json); // Deserialize the JSON into a list of movies
+                var json = File.ReadAllText(dialog.FileName);
+                var loaded = JsonSerializer.Deserialize<List<Movie>>(json);
+
                 if (loaded != null)
                 {
-                    service.ReplaceAll(loaded); // Replace the current movie list with the loaded list
-                    RefreshMovieList(); // Refresh the UI to display the new list
+                    service.ReplaceAll(loaded);
+                    RefreshMovieList();
 
-                    // Update movieCounter based on the highest MovieID in the loaded list
                     if (loaded.Any())
                     {
                         var maxId = loaded
-                            .Select(m => int.TryParse(m.MovieID.TrimStart('M'), out int id) ? id : 0) // Extract numeric part of MovieID
-                            .Max(); // Find the highest ID
-                        movieCounter = maxId + 1; // Set movieCounter to the next available ID
+                            .Select(m => int.TryParse(m.ID.TrimStart('M'), out int id) ? id : 0)
+                            .Max();
+                        movieCounter = maxId + 1;
                     }
                     else
                     {
-                        movieCounter = 1; // Reset if the list is empty
+                        movieCounter = 1;
                     }
 
-                    MessageBox.Show("Movies loaded."); // Notify the user
+                    MessageBox.Show("Movies loaded.");
                 }
             }
             catch
             {
-                MessageBox.Show("Failed to load file."); // Notify the user if an error occurs
+                MessageBox.Show("Failed to load file.");
             }
         }
     }
