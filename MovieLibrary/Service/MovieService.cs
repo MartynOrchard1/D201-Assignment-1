@@ -94,6 +94,34 @@ namespace MovieLibrary.Services
             return result;
         }
 
+        public void DeleteMovieById(string id)
+        {
+            var allMovies = movieList.ToList();
+            var updated = allMovies.Where(m => m.MovieID != id).ToList();
 
+            // Rebuild the linked list
+            movieList = new MovieLibrary.DataStructures.LinkedList<Movie>();
+
+            // Rebuild the hash table
+            movieTable = new MovieLibrary.DataStructures.HashTable<string, Movie>();
+
+            foreach (var movie in updated)
+            {
+                movieList.Add(movie);
+                movieTable.Add(movie.MovieID, movie);
+            }
+        }
+
+        public void ReplaceAll(List<Movie> movies)
+        {
+            movieList = new MovieLibrary.DataStructures.LinkedList<Movie>();
+            movieTable = new MovieLibrary.DataStructures.HashTable<string, Movie>();
+
+            foreach (var movie in movies)
+            {
+                movieList.Add(movie);
+                movieTable.Add(movie.MovieID, movie);
+            }
+        }
     }
 }
