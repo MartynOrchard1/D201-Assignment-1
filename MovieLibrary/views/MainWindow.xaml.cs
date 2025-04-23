@@ -40,6 +40,8 @@ public partial class MainWindow : Window
             service.AddMovie(movie);
             movieCounter++;
             RefreshMovieList();
+            ClearInputFields();
+            MessageBox.Show("Movie added successfully.", "Add Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (Exception ex)
         {
