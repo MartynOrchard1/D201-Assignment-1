@@ -346,5 +346,43 @@ namespace MovieLibrary.Tests
             Assert.Equal("Memento", sortedMovies[1].Title);
             Assert.Equal("Zodiac", sortedMovies[2].Title);
         }
+
+        [Fact]
+        public void MergeSortByYear_ShouldSortMoviesByReleaseYear()
+        {
+            // Arrange
+            var movie1 = new Movie
+            {
+                ID = "M016",
+                Title = "The Social Network",
+                Director = "David Fincher",
+                Genre = "Drama",
+                ReleaseYear = 2010
+            };
+
+            var movie2 = new Movie
+            {
+                ID = "M017",
+                Title = "Se7en",
+                Director = "David Fincher",
+                Genre = "Thriller",
+                ReleaseYear = 1995
+            };
+
+            var movie3 = new Movie
+            {
+                ID = "M018",
+                Title = "Gone Girl",
+                Director = "David Fincher",
+                Genre = "Thriller",
+                ReleaseYear = 2014
+            };
+
+            _service.AddMovie(movie1);
+            _service.AddMovie(movie2);
+            _service.AddMovie(movie3);
+
+
+        }
     }
 }
