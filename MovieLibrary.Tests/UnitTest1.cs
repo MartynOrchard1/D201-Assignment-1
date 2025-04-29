@@ -472,5 +472,42 @@ namespace MovieLibrary.Tests
             Assert.NotNull(remainingMovie); // M021 should still exist
             Assert.Equal("Movie Two", remainingMovie.Title);
         }
+
+        [Fact]
+        public void ReplaceAll_ShouldReplaceAllMoviesSuccessfully()
+        {
+            // Arrange
+            var originalMovie = new Movie
+            {
+                ID = "M030",
+                Title = "Old Movie",
+                Director = "Old Director",
+                Genre = "Old Genre",
+                ReleaseYear = 1990
+            };
+
+            _service.AddMovie(originalMovie);
+
+            var newMovies = new List<Movie>
+            {
+                new Movie
+                {
+                    ID = "M031",
+                    Title = "New Movie 1",
+                    Director = "Director 1",
+                    Genre = "Genre 1",
+                    ReleaseYear = 2020
+                },
+                new Movie
+                {
+                    ID = "M032",
+                    Title = "New Movie 2",
+                    Director = "Director 2",
+                    Genre = "Genre 2",
+                    ReleaseYear = 2021
+                }
+            };
+
+        }
     }
 }
