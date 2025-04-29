@@ -522,6 +522,12 @@ namespace MovieLibrary.Tests
         }
     }
     public class QueueTests {
-        
+        [Fact]
+        public void Enqueue_ShouldIncreaseCount()
+        {
+            var queue = new Queue<string>();
+            queue.Enqueue("First");
+            Assert.Equal(1, queue.Count);
+        }
     }
 }
