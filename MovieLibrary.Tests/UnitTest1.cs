@@ -391,5 +391,49 @@ namespace MovieLibrary.Tests
             Assert.Equal("The Social Network", sortedMovies[1].Title); // 2010
             Assert.Equal("Gone Girl", sortedMovies[2].Title); // 2014
         }
+        [Fact]
+        public void SortByID_ShouldSortMoviesByID()
+        {
+            // Arrange
+            var movie1 = new Movie
+            {
+                ID = "M003",
+                Title = "Movie C",
+                Director = "Director 3",
+                Genre = "Genre 3",
+                ReleaseYear = 2003
+            };
+
+            var movie2 = new Movie
+            {
+                ID = "M001",
+                Title = "Movie A",
+                Director = "Director 1",
+                Genre = "Genre 1",
+                ReleaseYear = 2001
+            };
+
+            var movie3 = new Movie
+            {
+                ID = "M002",
+                Title = "Movie B",
+                Director = "Director 2",
+                Genre = "Genre 2",
+                ReleaseYear = 2002
+            };
+
+            _service.AddMovie(movie1);
+            _service.AddMovie(movie2);
+            _service.AddMovie(movie3);
+
+            // Act
+            var sortedMovies = _service.SortByID();
+
+            // Assert
+            Assert.Equal(3, sortedMovies.Count);
+            Assert.Equal("M001", sortedMovies[0].ID);
+            Assert.Equal("M002", sortedMovies[1].ID);
+            Assert.Equal("M003", sortedMovies[2].ID);
+        }
     }
 }
