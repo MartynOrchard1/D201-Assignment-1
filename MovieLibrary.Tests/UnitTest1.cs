@@ -461,6 +461,16 @@ namespace MovieLibrary.Tests
             _service.AddMovie(movie1);
             _service.AddMovie(movie2);
 
+            // Act
+            _service.DeleteMovieById("M020");
+
+            // Assert
+            var deletedMovie = _service.SearchByID("M020");
+            var remainingMovie = _service.SearchByID("M021");
+
+            Assert.Null(deletedMovie); // M020 should be gone
+            Assert.NotNull(remainingMovie); // M021 should still exist
+            Assert.Equal("Movie Two", remainingMovie.Title);
         }
     }
 }
