@@ -168,5 +168,26 @@ namespace MovieLibrary.Tests
             Assert.Equal("Sci-Fi", result.Genre);
             Assert.Equal(2020, result.ReleaseYear);
         }
+        [Fact]
+        public void SearchByID_ShouldReturnNull_WhenNotFound()
+        {
+            // Arrange
+            var movie = new Movie
+            {
+                ID = "M008",
+                Title = "Dunkirk",
+                Director = "Christopher Nolan",
+                Genre = "War",
+                ReleaseYear = 2017
+            };
+
+            _service.AddMovie(movie);
+
+            // Act
+            var result = _service.SearchByID("M999"); // Random non-existent ID
+
+            // Assert
+            Assert.Null(result);
+        }
     }
 }
