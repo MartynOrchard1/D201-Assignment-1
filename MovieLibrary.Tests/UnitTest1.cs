@@ -205,7 +205,13 @@ namespace MovieLibrary.Tests
 
             _service.AddMovie(movie);
 
+            // Act
+            _service.BorrowMovie("M009", "User1");
 
+            // Assert
+            var result = _service.SearchByID("M009");
+            Assert.NotNull(result);
+            Assert.False(result.IsAvailable); // Should now be unavailable
         }
     }
 }
