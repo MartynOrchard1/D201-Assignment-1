@@ -260,6 +260,17 @@ namespace MovieLibrary.Tests
 
             _service.AddMovie(movie);
 
+            // First borrow to make unavailable
+            _service.BorrowMovie("M011", "User1");
+
+            // Second user joins the queue
+            _service.BorrowMovie("M011", "User2");
+
+            // Act
+            var assignedUser = _service.ReturnMovie("M011");
+
+            // Assert
+            Assert.Equal("User22", assignedUser);
         }
     }
 }
