@@ -11,8 +11,14 @@ namespace MovieLibrary.Tests {
         {
             _service = new MovieService();
         }
-        
-        [Fact]
 
+        [Fact]
+        public void AddMovie_ShouldAddMovieSuccessfully() 
+        {
+            // Arrange
+
+            // Act
+            
+            // Assert
     }
 }
