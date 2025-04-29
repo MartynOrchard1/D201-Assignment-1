@@ -549,5 +549,20 @@ namespace MovieLibrary.Tests
             var item = queue.Dequeue();
             Assert.Equal(default(string), item); // Should return default (null)
         }
+
+        [Fact]
+        public void IsEmpty_ShouldReturnTrue_WhenQueueIsEmpty()
+        {
+            var queue = new Queue<string>();
+            Assert.True(queue.isEmpty());
+        }
+        
+        [Fact]
+        public void IsEmpty_ShouldReturnFalse_WhenQueueHasItems()
+        {
+            var queue = new Queue<string>();
+            queue.Enqueue("Item");
+            Assert.False(queue.isEmpty());
+        }
     }
 }
