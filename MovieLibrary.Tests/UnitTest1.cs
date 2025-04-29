@@ -272,5 +272,23 @@ namespace MovieLibrary.Tests
             // Assert
             Assert.Equal("User2", assignedUser);
         }
+
+        [Fact]
+        public void ReturnMovie_ShouldMarkMovieAvailable_WhenNoQueue()
+        {
+            // Arrange
+            var movie = new Movie
+            {
+                ID = "M012",
+                Title = "Following",
+                Director = "Christopher Nolan",
+                Genre = "Thriller",
+                ReleaseYear = 1998,
+                IsAvailable = true
+            };
+
+            _service.AddMovie(movie);
+            
+        }
     }
 }
