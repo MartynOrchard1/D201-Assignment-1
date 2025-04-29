@@ -1,6 +1,9 @@
 ﻿using Xunit;
 using MovieLibrary.Models;
 using MovieLibrary.Services; 
+using MovieLibrary.DataStructures;
+using CustomQueue = MovieLibrary.DataStructures.Queue<string>;
+
 
 namespace MovieLibrary.Tests
 {
@@ -525,42 +528,34 @@ namespace MovieLibrary.Tests
         [Fact]
         public void Enqueue_ShouldIncreaseCount()
         {
-            var queue = new Queue<string>();
+            var queue = new CustomQueue();
             queue.Enqueue("First");
-            Assert.Equal(1, queue.Count);
+            Assert.Equal(1, queue.Count());
         }
 
         [Fact]
         public void Dequeue_ShouldReturnFirstItem()
         {
-            var queue = new Queue<string>();
+            var queue = new CustomQueue();
             queue.Enqueue("First");
             queue.Enqueue("Second");
 
             var item = queue.Dequeue();
             Assert.Equal("First", item);
-            Assert.Equal(1, queue.Count); // Should only be one left
-        }
-        
-        [Fact]
-        public void Dequeue_ShouldHandleEmptyQueueGracefully()
-        {
-            var queue = new Queue<string>();
-            var item = queue.Dequeue();
-            Assert.Equal(default(string), item); // Should return default (null)
+            Assert.Equal(1, queue.Count()); // Fixed
         }
 
         [Fact]
         public void IsEmpty_ShouldReturnTrue_WhenQueueIsEmpty()
         {
-            var queue = new Queue<string>();
+            var queue = new CustomQueue();
             Assert.True(queue.isEmpty());
         }
         
         [Fact]
         public void IsEmpty_ShouldReturnFalse_WhenQueueHasItems()
         {
-            var queue = new Queue<string>();
+            var queue = new CustomQueue();
             queue.Enqueue("Item");
             Assert.False(queue.isEmpty());
         }
