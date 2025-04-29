@@ -515,10 +515,13 @@ namespace MovieLibrary.Tests
             var oldMovie = _service.SearchByID("M030");
             var newMovie1 = _service.SearchByID("M031");
             var newMovie2 = _service.SearchByID("M032");
-            
+
             Assert.Null(oldMovie); // Old movie should be gone
             Assert.NotNull(newMovie1); // New movies should exist
             Assert.NotNull(newMovie2);
         }
+    }
+    public class QueueTests {
+        
     }
 }
