@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KLIq1eNawQs=",
+  "dgSpecHash": "2Be0eaupVd0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\MovieLibrary.Tests\\MovieLibrary.Tests.csproj",
+  "projectFilePath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary.tests\\MovieLibrary.Tests.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ASUSLP\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
+    "C:\\Users\\ASUSLP\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\ASUSLP\\.nuget\\packages\\microsoft.codecoverage\\17.12.0\\microsoft.codecoverage.17.12.0.nupkg.sha512",
     "C:\\Users\\ASUSLP\\.nuget\\packages\\microsoft.net.test.sdk\\17.12.0\\microsoft.net.test.sdk.17.12.0.nupkg.sha512",
     "C:\\Users\\ASUSLP\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.12.0\\microsoft.testplatform.objectmodel.17.12.0.nupkg.sha512",
