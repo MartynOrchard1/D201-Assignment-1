@@ -37,5 +37,7 @@ namespace MovieLibrary.Tests
             Assert.Equal("Sci-Fi", result.Genre);
             Assert.Equal(2010, result.ReleaseYear);
         }
+
+        [Fact]
     }
 }
