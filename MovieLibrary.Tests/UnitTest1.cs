@@ -189,5 +189,21 @@ namespace MovieLibrary.Tests
             // Assert
             Assert.Null(result);
         }
+        [Fact]
+        public void BorrowMovie_ShouldMarkMovieUnavailable()
+        {
+            // Arrange
+            var movie = new Movie
+            {
+                ID = "M009",
+                Title = "Batman Begins",
+                Director = "Christopher Nolan",
+                Genre = "Action",
+                ReleaseYear = 2005,
+                IsAvailable = true // Start as available
+            };
+
+
+        }
     }
 }
