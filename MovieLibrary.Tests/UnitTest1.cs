@@ -39,5 +39,33 @@ namespace MovieLibrary.Tests
         }
 
         [Fact]
+        public void AddMovie_ShouldThrowException_WhenDuplicateID()
+        {
+            // Arrange
+            var movie1 = new Movie
+            {
+                ID = "M001",
+                Title = "Inception",
+                Director = "Christopher Nolan",
+                Genre = "Sci-Fi",
+                ReleaseYear = 2010
+            };
+
+            var movie2 = new Movie
+            {
+                ID = "M001", // Same ID as movie1
+                Title = "Interstellar",
+                Director = "Christopher Nolan",
+                Genre = "Sci-Fi",
+                ReleaseYear = 2014
+            };
+
+            _service.AddMovie(movie1);
+
+            // Act & Assert
+            var exception = Assert.Throws<Exception>(() => _service.AddMovie(movie2));
+            Assert.Equal("Duplicate Movie ID", exception.Message);
+        }
+
     }
 }
