@@ -529,7 +529,7 @@ namespace MovieLibrary.Tests
             queue.Enqueue("First");
             Assert.Equal(1, queue.Count);
         }
-        
+
         [Fact]
         public void Dequeue_ShouldReturnFirstItem()
         {
@@ -540,6 +540,14 @@ namespace MovieLibrary.Tests
             var item = queue.Dequeue();
             Assert.Equal("First", item);
             Assert.Equal(1, queue.Count); // Should only be one left
+        }
+        
+        [Fact]
+        public void Dequeue_ShouldHandleEmptyQueueGracefully()
+        {
+            var queue = new Queue<string>();
+            var item = queue.Dequeue();
+            Assert.Equal(default(string), item); // Should return default (null)
         }
     }
 }
