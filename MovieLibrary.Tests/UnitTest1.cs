@@ -529,5 +529,17 @@ namespace MovieLibrary.Tests
             queue.Enqueue("First");
             Assert.Equal(1, queue.Count);
         }
+        
+        [Fact]
+        public void Dequeue_ShouldReturnFirstItem()
+        {
+            var queue = new Queue<string>();
+            queue.Enqueue("First");
+            queue.Enqueue("Second");
+
+            var item = queue.Dequeue();
+            Assert.Equal("First", item);
+            Assert.Equal(1, queue.Count); // Should only be one left
+        }
     }
 }
