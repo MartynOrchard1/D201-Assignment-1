@@ -111,6 +111,7 @@ namespace MovieLibrary.Tests
             Assert.Contains(results, m => m.Title == "The Dark Knight");
             Assert.Contains(results, m => m.Title == "Dark Waters");
         }
+
         [Fact]
         public void SearchByTitle_ShouldReturnEmptyList_WhenNoMatches()
         {
@@ -143,6 +144,7 @@ namespace MovieLibrary.Tests
             Assert.NotNull(results);
             Assert.Empty(results); // The list should be empty
         }
+
         [Fact]
         public void SearchByID_ShouldReturnMovie_WhenExists()
         {
@@ -168,6 +170,7 @@ namespace MovieLibrary.Tests
             Assert.Equal("Sci-Fi", result.Genre);
             Assert.Equal(2020, result.ReleaseYear);
         }
+
         [Fact]
         public void SearchByID_ShouldReturnNull_WhenNotFound()
         {
@@ -189,6 +192,7 @@ namespace MovieLibrary.Tests
             // Assert
             Assert.Null(result);
         }
+
         [Fact]
         public void BorrowMovie_ShouldMarkMovieUnavailable()
         {
@@ -212,6 +216,24 @@ namespace MovieLibrary.Tests
             var result = _service.SearchByID("M009");
             Assert.NotNull(result);
             Assert.False(result.IsAvailable); // Should now be unavailable
+        }
+
+        [Fact]
+        public void BorrowMovie_ShouldAddUserToQueue_WhenMovieUnavailable()
+        {
+            // Arrange
+            var movie = new Movie
+            {
+                ID = "M010",
+                Title = "The Prestige",
+                Director = "Christopher Nolan",
+                Genre = "Drama",
+                ReleaseYear = 2006,
+                IsAvailable = true
+            };
+
+            _service.AddMovie(movie);
+
         }
     }
 }
