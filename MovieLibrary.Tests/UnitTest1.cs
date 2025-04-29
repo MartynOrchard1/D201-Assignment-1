@@ -158,6 +158,15 @@ namespace MovieLibrary.Tests
 
             _service.AddMovie(movie);
 
+            // Act
+            var result = _service.SearchByID("M007");
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal("Tenet", result.Title);
+            Assert.Equal("Christopher Nolan", result.Director);
+            Assert.Equal("Sci-Fi", result.Genre);
+            Assert.Equal(2020, result.ReleaseYear);
         }
     }
 }
