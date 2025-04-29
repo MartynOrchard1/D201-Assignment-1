@@ -288,7 +288,15 @@ namespace MovieLibrary.Tests
             };
 
             _service.AddMovie(movie);
-            
+
+            // Borrow the movie to make it unavailable
+            _service.BorrowMovie("M012", "User1");
+
+            // Act
+            var assignedUser = _service.ReturnMovie("M012");
+
+            // Assert
+            Assert.Equal("User1", assignedUser); 
         }
     }
 }
