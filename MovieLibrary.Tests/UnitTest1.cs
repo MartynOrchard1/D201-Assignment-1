@@ -301,5 +301,41 @@ namespace MovieLibrary.Tests
             Assert.True(result.IsAvailable); 
             Assert.Null(assignedUser); 
         }
+
+        [Fact]
+        public void BubbleSortByTitle_ShouldSortMoviesAlphabetically()
+        {
+            // Arrange
+            var movie1 = new Movie
+            {
+                ID = "M013",
+                Title = "Zodiac",
+                Director = "David Fincher",
+                Genre = "Thriller",
+                ReleaseYear = 2007
+            };
+
+            var movie2 = new Movie
+            {
+                ID = "M014",
+                Title = "A Beautiful Mind",
+                Director = "Ron Howard",
+                Genre = "Drama",
+                ReleaseYear = 2001
+            };
+
+            var movie3 = new Movie
+            {
+                ID = "M015",
+                Title = "Memento",
+                Director = "Christopher Nolan",
+                Genre = "Thriller",
+                ReleaseYear = 2000
+            };
+
+            _service.AddMovie(movie1);
+            _service.AddMovie(movie2);
+            _service.AddMovie(movie3);
+
     }
 }
