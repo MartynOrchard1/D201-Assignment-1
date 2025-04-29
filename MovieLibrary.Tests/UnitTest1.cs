@@ -1,6 +1,9 @@
 ﻿using Xunit;
 using MovieLibrary.Models;
 using MovieLibrary.Services; 
+using MovieLibrary.DataStructures;
+using CustomQueue = MovieLibrary.DataStructures.Queue<string>;
+
 
 namespace MovieLibrary.Tests
 {
@@ -390,6 +393,171 @@ namespace MovieLibrary.Tests
             Assert.Equal("Se7en", sortedMovies[0].Title); // 1995
             Assert.Equal("The Social Network", sortedMovies[1].Title); // 2010
             Assert.Equal("Gone Girl", sortedMovies[2].Title); // 2014
+        }
+        [Fact]
+        public void SortByID_ShouldSortMoviesByID()
+        {
+            // Arrange
+            var movie1 = new Movie
+            {
+                ID = "M003",
+                Title = "Movie C",
+                Director = "Director 3",
+                Genre = "Genre 3",
+                ReleaseYear = 2003
+            };
+
+            var movie2 = new Movie
+            {
+                ID = "M001",
+                Title = "Movie A",
+                Director = "Director 1",
+                Genre = "Genre 1",
+                ReleaseYear = 2001
+            };
+
+            var movie3 = new Movie
+            {
+                ID = "M002",
+                Title = "Movie B",
+                Director = "Director 2",
+                Genre = "Genre 2",
+                ReleaseYear = 2002
+            };
+
+            _service.AddMovie(movie1);
+            _service.AddMovie(movie2);
+            _service.AddMovie(movie3);
+
+            // Act
+            var sortedMovies = _service.SortByID();
+
+            // Assert
+            Assert.Equal(3, sortedMovies.Count);
+            Assert.Equal("M001", sortedMovies[0].ID);
+            Assert.Equal("M002", sortedMovies[1].ID);
+            Assert.Equal("M003", sortedMovies[2].ID);
+        }
+
+        [Fact]
+        public void DeleteMovieById_ShouldRemoveCorrectMovie()
+        {
+            // Arrange
+            var movie1 = new Movie
+            {
+                ID = "M020",
+                Title = "Movie One",
+                Director = "Director One",
+                Genre = "Genre One",
+                ReleaseYear = 2001
+            };
+
+            var movie2 = new Movie
+            {
+                ID = "M021",
+                Title = "Movie Two",
+                Director = "Director Two",
+                Genre = "Genre Two",
+                ReleaseYear = 2002
+            };
+
+            _service.AddMovie(movie1);
+            _service.AddMovie(movie2);
+
+            // Act
+            _service.DeleteMovieById("M020");
+
+            // Assert
+            var deletedMovie = _service.SearchByID("M020");
+            var remainingMovie = _service.SearchByID("M021");
+
+            Assert.Null(deletedMovie); // M020 should be gone
+            Assert.NotNull(remainingMovie); // M021 should still exist
+            Assert.Equal("Movie Two", remainingMovie.Title);
+        }
+
+        [Fact]
+        public void ReplaceAll_ShouldReplaceAllMoviesSuccessfully()
+        {
+            // Arrange
+            var originalMovie = new Movie
+            {
+                ID = "M030",
+                Title = "Old Movie",
+                Director = "Old Director",
+                Genre = "Old Genre",
+                ReleaseYear = 1990
+            };
+
+            _service.AddMovie(originalMovie);
+
+            var newMovies = new List<Movie>
+            {
+                new Movie
+                {
+                    ID = "M031",
+                    Title = "New Movie 1",
+                    Director = "Director 1",
+                    Genre = "Genre 1",
+                    ReleaseYear = 2020
+                },
+                new Movie
+                {
+                    ID = "M032",
+                    Title = "New Movie 2",
+                    Director = "Director 2",
+                    Genre = "Genre 2",
+                    ReleaseYear = 2021
+                }
+            };
+
+            // Act
+            _service.ReplaceAll(newMovies);
+
+            // Assert
+            var oldMovie = _service.SearchByID("M030");
+            var newMovie1 = _service.SearchByID("M031");
+            var newMovie2 = _service.SearchByID("M032");
+
+            Assert.Null(oldMovie); // Old movie should be gone
+            Assert.NotNull(newMovie1); // New movies should exist
+            Assert.NotNull(newMovie2);
+        }
+    }
+    public class QueueTests {
+        [Fact]
+        public void Enqueue_ShouldIncreaseCount()
+        {
+            var queue = new CustomQueue();
+            queue.Enqueue("First");
+            Assert.Equal(1, queue.Count());
+        }
+
+        [Fact]
+        public void Dequeue_ShouldReturnFirstItem()
+        {
+            var queue = new CustomQueue();
+            queue.Enqueue("First");
+            queue.Enqueue("Second");
+
+            var item = queue.Dequeue();
+            Assert.Equal("First", item);
+            Assert.Equal(1, queue.Count()); // Fixed
+        }
+
+        [Fact]
+        public void IsEmpty_ShouldReturnTrue_WhenQueueIsEmpty()
+        {
+            var queue = new CustomQueue();
+            Assert.True(queue.isEmpty());
+        }
+        
+        [Fact]
+        public void IsEmpty_ShouldReturnFalse_WhenQueueHasItems()
+        {
+            var queue = new CustomQueue();
+            queue.Enqueue("Item");
+            Assert.False(queue.isEmpty());
         }
     }
 }
