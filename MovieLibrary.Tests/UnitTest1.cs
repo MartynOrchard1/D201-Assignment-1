@@ -244,5 +244,22 @@ namespace MovieLibrary.Tests
             var assignedUser = _service.ReturnMovie("M010");
             Assert.Equal("User2", assignedUser); 
         }
+        [Fact]
+        public void ReturnMovie_ShouldAssignMovieToNextUserInQueue()
+        {
+            // Arrange
+            var movie = new Movie
+            {
+                ID = "M011",
+                Title = "Oppenheimer",
+                Director = "Christopher Nolan",
+                Genre = "Drama",
+                ReleaseYear = 2023,
+                IsAvailable = true
+            };
+
+            _service.AddMovie(movie);
+
+        }
     }
 }
