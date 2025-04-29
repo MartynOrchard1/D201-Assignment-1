@@ -337,5 +337,14 @@ namespace MovieLibrary.Tests
             _service.AddMovie(movie2);
             _service.AddMovie(movie3);
 
+            // Act
+            var sortedMovies = _service.BubbleSortByTitle();
+
+            // Assert
+            Assert.Equal(3, sortedMovies.Count);
+            Assert.Equal("A Beautiful Mind", sortedMovies[0].Title);
+            Assert.Equal("Memento", sortedMovies[1].Title);
+            Assert.Equal("Zodiac", sortedMovies[2].Title);
+        }
     }
 }
