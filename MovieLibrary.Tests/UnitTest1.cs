@@ -1,30 +1,31 @@
 ﻿using Xunit;
 using MovieLibrary.Models;
-using MovieLibrary.Service;
+using MovieLibrary.Services; 
 
-namespace MovieLibrary.Tests {
-    public class MovieServiceTests
+namespace MovieLibrary.Tests
+{
+    public class UnitTest1
     {
         private readonly MovieService _service;
 
-        public MovieServiceTests()
+        public UnitTest1()
         {
             _service = new MovieService();
         }
 
         [Fact]
-        public void AddMovie_ShouldAddMovieSuccessfully() 
+        public void AddMovie_ShouldAddMovieSuccessfully()
         {
             // Arrange
             var movie = new Movie
             {
-                MovieID = "M001",
+                ID = "M001",
                 Title = "Inception",
                 Director = "Christopher Nolan",
                 Genre = "Sci-Fi",
                 ReleaseYear = 2010
             };
-            
+
             // Act
             _service.AddMovie(movie);
 
