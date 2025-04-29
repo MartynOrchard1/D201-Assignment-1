@@ -234,6 +234,15 @@ namespace MovieLibrary.Tests
 
             _service.AddMovie(movie);
 
+            // First borrow to make it unavailable
+            _service.BorrowMovie("M010", "User1");
+
+            // Act - Second user tries to borrow
+            _service.BorrowMovie("M010", "User2"); // Should add to queue
+
+            // Assert
+            var assignedUser = _service.ReturnMovie("M010");
+            Assert.Equal("User2", assignedUser); 
         }
     }
 }
