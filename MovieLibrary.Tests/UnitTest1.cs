@@ -270,7 +270,7 @@ namespace MovieLibrary.Tests
             var assignedUser = _service.ReturnMovie("M011");
 
             // Assert
-            Assert.Equal("User22", assignedUser);
+            Assert.Equal("User2", assignedUser);
         }
     }
 }
