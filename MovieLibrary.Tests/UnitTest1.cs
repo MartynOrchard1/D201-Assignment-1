@@ -296,7 +296,10 @@ namespace MovieLibrary.Tests
             var assignedUser = _service.ReturnMovie("M012");
 
             // Assert
-            Assert.Equal("User1", assignedUser); 
+            var result = _service.SearchByID("M012");
+            Assert.NotNull(result);
+            Assert.True(result.IsAvailable); 
+            Assert.Null(assignedUser); 
         }
     }
 }
