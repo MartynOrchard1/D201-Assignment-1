@@ -111,5 +111,31 @@ namespace MovieLibrary.Tests
             Assert.Contains(results, m => m.Title == "The Dark Knight");
             Assert.Contains(results, m => m.Title == "Dark Waters");
         }
+        [Fact]
+        public void SearchByTitle_ShouldReturnEmptyList_WhenNoMatches()
+        {
+            // Arrange
+            var movie1 = new Movie
+            {
+                ID = "M005",
+                Title = "Interstellar",
+                Director = "Christopher Nolan",
+                Genre = "Sci-Fi",
+                ReleaseYear = 2014
+            };
+
+            var movie2 = new Movie
+            {
+                ID = "M006",
+                Title = "Memento",
+                Director = "Christopher Nolan",
+                Genre = "Thriller",
+                ReleaseYear = 2000
+            };
+
+            _service.AddMovie(movie1);
+            _service.AddMovie(movie2);
+
+        }
     }
 }
