@@ -382,7 +382,14 @@ namespace MovieLibrary.Tests
             _service.AddMovie(movie2);
             _service.AddMovie(movie3);
 
+            // Act
+            var sortedMovies = _service.MergeSortByYear();
 
+            // Assert
+            Assert.Equal(3, sortedMovies.Count);
+            Assert.Equal("Se7en", sortedMovies[0].Title); // 1995
+            Assert.Equal("The Social Network", sortedMovies[1].Title); // 2010
+            Assert.Equal("Gone Girl", sortedMovies[2].Title); // 2014
         }
     }
 }
