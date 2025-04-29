@@ -435,5 +435,32 @@ namespace MovieLibrary.Tests
             Assert.Equal("M002", sortedMovies[1].ID);
             Assert.Equal("M003", sortedMovies[2].ID);
         }
+
+        [Fact]
+        public void DeleteMovieById_ShouldRemoveCorrectMovie()
+        {
+            // Arrange
+            var movie1 = new Movie
+            {
+                ID = "M020",
+                Title = "Movie One",
+                Director = "Director One",
+                Genre = "Genre One",
+                ReleaseYear = 2001
+            };
+
+            var movie2 = new Movie
+            {
+                ID = "M021",
+                Title = "Movie Two",
+                Director = "Director Two",
+                Genre = "Genre Two",
+                ReleaseYear = 2002
+            };
+
+            _service.AddMovie(movie1);
+            _service.AddMovie(movie2);
+
+        }
     }
 }
