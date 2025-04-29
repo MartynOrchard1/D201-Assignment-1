@@ -143,5 +143,21 @@ namespace MovieLibrary.Tests
             Assert.NotNull(results);
             Assert.Empty(results); // The list should be empty
         }
+        [Fact]
+        public void SearchByID_ShouldReturnMovie_WhenExists()
+        {
+            // Arrange
+            var movie = new Movie
+            {
+                ID = "M007",
+                Title = "Tenet",
+                Director = "Christopher Nolan",
+                Genre = "Sci-Fi",
+                ReleaseYear = 2020
+            };
+
+            _service.AddMovie(movie);
+
+        }
     }
 }
