@@ -66,6 +66,5 @@ namespace MovieLibrary.Tests
             var exception = Assert.Throws<Exception>(() => _service.AddMovie(movie2));
             Assert.Equal("Duplicate Movie ID", exception.Message);
         }
-
     }
 }
