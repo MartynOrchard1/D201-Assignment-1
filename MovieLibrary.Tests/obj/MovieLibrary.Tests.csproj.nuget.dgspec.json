@@ -1,31 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\MovieLibrary.Tests\\MovieLibrary.Tests.csproj": {}
+    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary.tests\\MovieLibrary.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\MovieLibrary.Tests\\MovieLibrary.Tests.csproj": {
+    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary.tests\\MovieLibrary.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\MovieLibrary.Tests\\MovieLibrary.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary.tests\\MovieLibrary.Tests.csproj",
         "projectName": "MovieLibrary.Tests",
-        "projectPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\MovieLibrary.Tests\\MovieLibrary.Tests.csproj",
+        "projectPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary.tests\\MovieLibrary.Tests.csproj",
         "packagesPath": "C:\\Users\\ASUSLP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary\\MovieLibrary.Tests\\obj\\",
+        "outputPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\movielibrary.tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUSLP\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net9.0-windows"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
-            "projectReferences": {}
+          "net9.0-windows7.0": {
+            "targetAlias": "net9.0-windows",
+            "projectReferences": {
+              "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\MovieLibrary\\movielibrary.csproj": {
+                "projectPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\MovieLibrary\\movielibrary.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -41,8 +45,8 @@
         "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net9.0-windows7.0": {
+          "targetAlias": "net9.0-windows",
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
@@ -75,6 +79,68 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\MovieLibrary\\movielibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\MovieLibrary\\movielibrary.csproj",
+        "projectName": "movielibrary",
+        "projectPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\MovieLibrary\\movielibrary.csproj",
+        "packagesPath": "C:\\Users\\ASUSLP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUSLP\\Documents\\GitHub\\D201-Assignment-1\\MovieLibrary\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ASUSLP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0-windows"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0-windows7.0": {
+            "targetAlias": "net9.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0-windows7.0": {
+          "targetAlias": "net9.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
