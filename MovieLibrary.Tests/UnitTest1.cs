@@ -203,6 +203,8 @@ namespace MovieLibrary.Tests
                 IsAvailable = true // Start as available
             };
 
+            _service.AddMovie(movie);
+
 
         }
     }
