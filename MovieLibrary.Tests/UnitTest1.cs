@@ -102,6 +102,14 @@ namespace MovieLibrary.Tests
             _service.AddMovie(movie2);
             _service.AddMovie(movie3);
 
+            // Act
+            var results = _service.SearchByTitle("Dark");
+
+            // Assert
+            Assert.NotNull(results);
+            Assert.Equal(2, results.Count); // "The Dark Knight" and "Dark Waters" should match
+            Assert.Contains(results, m => m.Title == "The Dark Knight");
+            Assert.Contains(results, m => m.Title == "Dark Waters");
         }
     }
 }
