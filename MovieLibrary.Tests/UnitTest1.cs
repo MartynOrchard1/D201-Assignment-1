@@ -136,6 +136,12 @@ namespace MovieLibrary.Tests
             _service.AddMovie(movie1);
             _service.AddMovie(movie2);
 
+            // Act
+            var results = _service.SearchByTitle("Avengers"); // No movie with this title
+
+            // Assert
+            Assert.NotNull(results);
+            Assert.Empty(results); // The list should be empty
         }
     }
 }
