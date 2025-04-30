@@ -21,10 +21,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/Test 1.3.png" alt="Before Adding" height="300">
 
 **After**
-<img src="../Ui tests/Images/"
+<img src="../Ui tests/Images/Test-1.1.png" alt ="After Adding - MessageBox" height="300">
 <img src="../Ui tests/Images/Test 1.2.png" alt="After Adding" height="300">
 ---
 
@@ -47,11 +47,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -75,11 +77,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -102,11 +106,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -129,11 +135,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -156,11 +164,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -183,11 +193,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -210,11 +222,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -237,11 +251,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -264,11 +280,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
@@ -291,11 +309,13 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/" alt="" height="300">
+
 
 
 ---
