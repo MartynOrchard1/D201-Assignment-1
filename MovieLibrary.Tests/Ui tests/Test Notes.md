@@ -7,7 +7,7 @@
 **Feature:** Add Movie  
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
+2. Enter movie details: Title = "Test Case 1", Director = "First Test", Year = 2025
 3. Click "Add" button
 
 **Expected Result:**  
@@ -109,52 +109,52 @@ User2 receives the movie
 ---
 ### Test Case TC05 – Return Movie without Waiting Queue
 
-**Feature:** Add Movie  
+**Feature:** Return Movie (no queue)
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
-3. Click "Add" button
+2. Borrow Movie
+3. Return Movie
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Movie becomes available again
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+Movie marked available
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC05.1.png" alt="Not Available" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC05.2.png" alt="Messagebox" height="">
+<img src="../Ui tests/Images/TC05.3.png" alt="Movie Returned" height="">
 
 ---
-### Test Case TC06 – Add Movie
+### Test Case TC06 – Sort by Title
 
-**Feature:** Add Movie  
+**Feature:** Sort 
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
-3. Click "Add" button
+2. Click `Sort by Title`
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Movies sorted A → Z
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+Sorted correctly
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
-**Before**
-<img src="../Ui tests/Images/" alt="" height="">
+**1st Click (a-z)**
+<img src="../Ui tests/Images/TC06.1.png" alt="" height="">
 
-**After**
-<img src="../Ui tests/Images/" alt="" height="">
+**2nd Click (z-a)**
+<img src="../Ui tests/Images/TC06.2.png" alt="" height="">
 
 ---
 ### Test Case TC07 – Add Movie
