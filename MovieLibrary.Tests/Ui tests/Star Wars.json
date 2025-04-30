@@ -1,0 +1,45 @@
+{
+  "Movies": [
+    {
+      "ID": "M002",
+      "Title": "Star Wars 1",
+      "Director": "Geroge Lucas",
+      "Genre": "Sci Fi",
+      "ReleaseYear": 1999,
+      "IsAvailable": true
+    },
+    {
+      "ID": "M003",
+      "Title": "Star Wars 2",
+      "Director": "Geroge Lucas",
+      "Genre": "Sci Fi",
+      "ReleaseYear": 2002,
+      "IsAvailable": true
+    },
+    {
+      "ID": "M004",
+      "Title": "Star Wars 3",
+      "Director": "Geroge Lucas",
+      "Genre": "Sci Fi",
+      "ReleaseYear": 2005,
+      "IsAvailable": true
+    },
+    {
+      "ID": "M005",
+      "Title": "Star Wars 4",
+      "Director": "Geroge Lucas",
+      "Genre": "Sci Fi",
+      "ReleaseYear": 2008,
+      "IsAvailable": true
+    },
+    {
+      "ID": "M006",
+      "Title": "Star Wars 5",
+      "Director": "Geroge Lucas",
+      "Genre": "Sci Fi",
+      "ReleaseYear": 2011,
+      "IsAvailable": true
+    }
+  ],
+  "Notifications": []
+}

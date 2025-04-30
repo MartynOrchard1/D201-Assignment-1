@@ -21,87 +21,92 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/TC01.3.png" alt="Before Adding" height="300">
+<img src="../Ui tests/Images/TC01.3.png" alt="Before Adding" height="">
 
 **After**
-<img src="../Ui tests/Images/TC01.1.png" alt ="After Adding - MessageBox" height="300">
-<img src="../Ui tests/Images/TC01.2.png" alt="After Adding" height="300">
+<img src="../Ui tests/Images/TC01.1.png" alt ="After Adding - MessageBox" height="">
+<img src="../Ui tests/Images/TC01.2.png" alt="After Adding" height="">
 ---
 
-### Test Case TC02 – Add Movie
+### Test Case TC02 – Search Movie by Title
 
-**Feature:** Add Movie  
+**Feature:** Search
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
-3. Click "Add" button
+2. Click `Load Movies`
+3. Load the `Star Wars.json` file provided
+3. Select the `Search by title` in the option box
+4. In the input field next to the option box type in 'star wars 1'
+5. Click `Search`
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Movie matching 'Star Wars 1' should appear as the only movie in the listbox
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+Star Wars 1 is the only movie shown in the listbox
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/TC02.1.png" alt="Before Searching" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/TC02.2.png" alt="After Searching" height="">
 
 ---
 
-### Test Case TC03 – Add Movie
+### Test Case TC03 – Borrow Movie
 
-**Feature:** Add Movie  
+**Feature:** Borrow Movie
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
-3. Click "Add" button
+2. Select/Click on a Movie from the list
+3. Click `Borrow` Button
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Movie is marked unavailable and is assigned to the user who borrowed it
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+Movie marked unavailable and assigned to user
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/TC03.1.png" alt="Before Borrowing movie" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/TC03.2.png" alt="After Borrowing Movie" height="">
+<img src="../Ui tests/Images/TC03.3.png" alt="After Borrowing Movie" height="">
 
 ---
-### Test Case TC04 – Add Movie
+### Test Case TC04 – Return Movie with Waiting Queue
 
-**Feature:** Add Movie  
+**Feature:** Return Movie with a queue
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
-3. Click "Add" button
+2. Borrow a movie with User1
+3. Attempt to borrow with User 2 --> Added to queue
+4. Return Movie
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Movie is reassigned to User2
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+User2 receives the movie
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 ---
 ### Test Case TC05 – Add Movie
@@ -123,10 +128,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 ---
 ### Test Case TC06 – Add Movie
@@ -148,10 +153,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 ---
 ### Test Case TC07 – Add Movie
@@ -173,10 +178,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 ---
 ### Test Case 8 – Add Movie
@@ -198,10 +203,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 ---
 ### Test Case TC09 – Add Movie
@@ -223,10 +228,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 ---
 ### Test Case TC10 – Add Movie
@@ -248,10 +253,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 ---
 ### Test Case TC11 – Add Movie
@@ -273,9 +278,9 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="300">
+<img src="../Ui tests/Images/" alt="" height="">
 
 ---
