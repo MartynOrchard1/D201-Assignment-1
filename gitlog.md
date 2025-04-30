@@ -1,3 +1,4 @@
+**Every commit that was 's' in it was just the Assembly info changing after running the application.**
 ```
 $ git log --graph
 *   commit 642e9a240f78eced24554f5cc2a66e3deedf8f8a (HEAD -> main, origin/main, origin/HEAD)
