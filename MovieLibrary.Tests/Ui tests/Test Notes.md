@@ -22,10 +22,11 @@ Movie is added successfully and listed at the bottom of thte grid
 
 **Before**
 <img src="../Ui tests/Images/TC01.3.png" alt="Before Adding" height="">
-
 **After**
+<br>
 <img src="../Ui tests/Images/TC01.1.png" alt ="After Adding - MessageBox" height="">
 <img src="../Ui tests/Images/TC01.2.png" alt="After Adding" height="">
+
 ---
 
 ### Test Case TC02 – Search Movie by Title
@@ -124,12 +125,15 @@ Movie marked available
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
-
+<br>
 **Before**
+<br>
 <img src="../Ui tests/Images/TC05.1.png" alt="Not Available" height="">
-
+<br>
 **After**
+<br>
 <img src="../Ui tests/Images/TC05.2.png" alt="Messagebox" height="">
+<br>
 <img src="../Ui tests/Images/TC05.3.png" alt="Movie Returned" height="">
 
 ---
