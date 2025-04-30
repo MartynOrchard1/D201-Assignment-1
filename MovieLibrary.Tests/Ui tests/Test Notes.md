@@ -21,11 +21,11 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
 
 **After**
 <img src="../Ui tests/Images/"
-<img src="../Ui tests/Images/Test 1.2.png" alt="After Add" height="300">
+<img src="../Ui tests/Images/Test 1.2.png" alt="After Adding" height="300">
 ---
 
 ### Test Case TC02 – Add Movie
@@ -47,10 +47,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 
@@ -73,10 +75,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 ### Test Case TC04 – Add Movie
@@ -98,10 +102,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 ### Test Case TC05 – Add Movie
@@ -123,10 +129,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 ### Test Case TC06 – Add Movie
@@ -148,10 +156,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 ### Test Case TC07 – Add Movie
@@ -173,10 +183,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 ### Test Case 8 – Add Movie
@@ -198,10 +210,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 ### Test Case TC09 – Add Movie
@@ -223,10 +237,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 ### Test Case TC10 – Add Movie
@@ -248,10 +264,12 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
 ### Test Case TC11 – Add Movie
@@ -273,9 +291,11 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 **After**
-<img src="../Ui tests/Images/">
+<img src="../Ui tests/Images/" alt="" height="">
+
 
 ---
