@@ -141,7 +141,7 @@ Movie marked available
 2. Click `Sort by Title`
 
 **Expected Result:**  
-Movies sorted A → Z
+Movies sorted A → Z on the first click. On the second click movies sorted Z → A.
 
 **Actual Result:**  
 Sorted correctly
@@ -157,128 +157,125 @@ Sorted correctly
 <img src="../Ui tests/Images/TC06.2.png" alt="" height="">
 
 ---
-### Test Case TC07 – Add Movie
+### Test Case TC07 – Sort by Release Year
 
-**Feature:** Add Movie  
+**Feature:** Sort by Year
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
-3. Click "Add" button
+2. Click `Sort by Year`
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Clicking the button the first time should sort the movies by oldest → newest. Clicking the button the second time should reverse the sort newest → oldest
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+Sorted correctly on both clicks
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
-**Before**
-<img src="../Ui tests/Images/" alt="" height="">
+**1st Click Oldest-Newest**
+<img src="../Ui tests/Images/TC07.1.png" alt="1st Click" height="">
 
-**After**
-<img src="../Ui tests/Images/" alt="" height="">
+**2nd Click Newest-Oldest**
+<img src="../Ui tests/Images/TC07.2.png" alt="" height="">
 
 ---
-### Test Case 8 – Add Movie
+### Test Case 8 – Delete Movie
 
-**Feature:** Add Movie  
+**Feature:** Delete a movie
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
-3. Click "Add" button
+2. Select a movie in the list
+3. Click `Delete`
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Movie removed from list
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+Movie no longer visible
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC08.1.png" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC08.2.png" alt="" height="">
+<img src="../Ui tests/Images/TC08.3.png" alt="" height="">
+<img src="../Ui tests/Images/TC08.4.png" alt="" height="">
 
 ---
-### Test Case TC09 – Add Movie
 
-**Feature:** Add Movie  
+### Test Case TC09 – Add Movie Error Checking (Input Checks)
+
+**Feature:** Error Checking - Crash Prevention
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
+2. Enter nothing into the movie details: Title = "", Director = "", Year = ""
 3. Click "Add" button
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Program should interrupt and tell the user to enter some valid input into the input field (Title, Director and year etc.)
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+Error Checking(s) is successfull and prevents the program from crashing, tells the user to try again/correctly enter the inputs defined above.
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
 **Before**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC09.1.png" alt="" height="">
 
 **After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC09.2.png" alt="" height="">
 
 ---
-### Test Case TC10 – Add Movie
+### Test Case TC10 – Add Movie Error Checking (Valid Year)
 
 **Feature:** Add Movie  
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
+2. Enter a ridiculous year no e.g. "2026 or 1800"
 3. Click "Add" button
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+MessageBox should appear stating 'Release Year Can't be in the future' OR 'Please enter a realistic year BETWEEN 1888 and 2026'
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+Message Box appeared on both Inputs
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
-**Before**
-<img src="../Ui tests/Images/" alt="" height="">
-
-**After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC10.1.png" alt="" height="">
+<img src="../Ui tests/Images/TC10.2.png" alt="" height="">
 
 ---
-### Test Case TC11 – Add Movie
+### Test Case TC11 – Delete Movie Error Checks
 
 **Feature:** Add Movie  
 **Steps:**
 1. Launch application
-2. Enter movie details: Title = "Inception", Director = "Nolan", Year = 2010
-3. Click "Add" button
+2. For ease of testing load the `Star Wars.json` File provided in the `images` folder inside of the `UI tests` folder. 
+`MovieLibrary.tests/UI tests/Star Wars.json`
+3. Select a movie from the list
+4. Click `Delete`
 
 **Expected Result:**  
-Movie appears in the movie list below the input fields
+Application should pop up with a MessaageBox: 'Are you sure you want to delete `{Movie Name}`'
 
 **Actual Result:**  
-Movie is added successfully and listed at the bottom of thte grid
+MessageBox Appeared
 
 **Pass/Fail:** ✅ Pass
 
 #### Screenshots:
 
-**Before**
-<img src="../Ui tests/Images/" alt="" height="">
-
-**After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC11.1.png" alt="" height="">
 
 ---
