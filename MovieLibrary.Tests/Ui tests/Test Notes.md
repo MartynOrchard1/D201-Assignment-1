@@ -21,11 +21,11 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](Test-1.1.png)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
-
+<img src="../Ui tests/Images/"
+<img src="../Ui tests/Images/Test 1.2.png" alt="After Add" height="300">
 ---
 
 ### Test Case TC02 – Add Movie
@@ -47,10 +47,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 
@@ -73,10 +73,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 ### Test Case TC04 – Add Movie
@@ -98,10 +98,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 ### Test Case TC05 – Add Movie
@@ -123,10 +123,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 ### Test Case TC06 – Add Movie
@@ -148,10 +148,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 ### Test Case TC07 – Add Movie
@@ -173,10 +173,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 ### Test Case 8 – Add Movie
@@ -198,10 +198,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 ### Test Case TC09 – Add Movie
@@ -223,10 +223,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 ### Test Case TC10 – Add Movie
@@ -248,10 +248,10 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
 ### Test Case TC11 – Add Movie
@@ -273,9 +273,9 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 **After**
-![After Adding](<!--File path goes here-->)
+<img src="../Ui tests/Images/">
 
 ---
