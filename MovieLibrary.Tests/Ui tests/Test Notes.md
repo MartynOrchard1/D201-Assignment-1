@@ -21,7 +21,7 @@ Movie is added successfully and listed at the bottom of thte grid
 #### Screenshots:
 
 **Before**
-![Before Adding](<!--File path goes here-->)
+![Before Adding](Test-1.1.png)
 
 **After**
 ![After Adding](<!--File path goes here-->)
