@@ -102,14 +102,12 @@ User2 receives the movie
 
 #### Screenshots:
 
-**Before**
-<img src="../Ui tests/Images/" alt="" height="">
-
-**After**
-<img src="../Ui tests/Images/" alt="" height="">
+<img src="../Ui tests/Images/TC04.1.png" alt="Added to Queue" height="">
+<img src="../Ui tests/Images/TC04.2.png" alt="Is assigned to user2" height="">
+<img src="../Ui tests/Images/TC04.3.png" alt="Available = False " height="">
 
 ---
-### Test Case TC05 – Add Movie
+### Test Case TC05 – Return Movie without Waiting Queue
 
 **Feature:** Add Movie  
 **Steps:**
