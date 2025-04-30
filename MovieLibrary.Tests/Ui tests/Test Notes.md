@@ -279,3 +279,31 @@ MessageBox Appeared
 <img src="../Ui tests/Images/TC11.1.png" alt="" height="">
 
 ---
+
+### Test Case TC12 – Sort by Movie ID
+
+**Feature:** Sort by ID
+**Steps:**
+1. Launch application
+2. For ease of testing load the `Star Wars.json` File provided in the `images` folder inside of the `UI tests` folder. 
+`MovieLibrary.tests/UI tests/Star Wars.json`
+3. Click `Sort by ID`
+
+**Expected Result:**  
+On first click app should sort movies by id in order of M002 --> M006. On Second click the app should sort movies in the reverse order
+
+**Actual Result:**  
+Sort Successful
+
+**Pass/Fail:** ✅ Pass
+
+#### Screenshots:
+
+**1st Click**
+<img src="../Ui tests/Images/TC12.1.png" alt="" height="">
+
+**2nd Click**
+<img src="../Ui tests/Images/TC12.2.png" alt="" height="">
+
+--- 
+## End of UI Tests
