@@ -4,135 +4,118 @@
 The Movie Library Management System is a C# WPF desktop application that allows users to manage a collection of movies. Core functionality includes adding, searching, sorting, borrowing, and returning movies. The application also manages waiting lists for borrowed movies using a custom queue data structure.
 
 ## Project Structure
-- Models/ - Movie model.
-- Services/ - Business logic including Borrow/Return, Search, Sort.
-- DataStructures/ - Custom LinkedList, Queue, and HashTable implementations.
-- Views/ - WPF Frontend (MainWindow).
-- Helpers/ - File handling and validation utilities.
-- Tests/ - xUnit test project covering backend functionality.
+- **Models/** – Movie model
+- **Services/** – Business logic including Borrow/Return, Search, Sort
+- **DataStructures/** – Custom LinkedList, Queue, and HashTable implementations
+- **Views/** – WPF Frontend (MainWindow)
+- **Helpers/** – File handling and validation utilities
+- **Tests/** – xUnit test project covering backend functionality
+- **screenshots/** – Screenshots from manual UI tests
+- **manual-tests.md** – Manual testing documentation
 
 ## Features
-- Add, edit, and delete movies.
-- Search movies by Title or ID.
+- Add, edit, and delete movies
+- Search movies by Title or ID
 - Sort movies by:
   - Title (Bubble Sort)
   - Release Year (Merge Sort)
-  - Movie ID 
-- Borrow movies with queue management if unavailable.
-- Return movies and automatically assign to the next user in the queue if applicable.
-- Save and load movie collections from JSON files.
-- UI feedback provided for all important user actions.
-
+  - Movie ID (default sort)
+- Borrow movies with queue management if unavailable
+- Return movies and automatically assign to the next user in the queue if applicable
+- Save and load movie collections from JSON files
+- UI feedback provided for all important user actions
 
 ## Key Features Explained
+
 ### Search and Sort
 - **Search**: Users can search movies by title (case insensitive) or ID.
 - **Sort**: Users can sort movies:
   - By Title using Bubble Sort.
   - By Release Year using Merge Sort.
-- Sort order can toggle between ascending and descending when clicked again.
+  - Sort order toggles between ascending and descending.
 
 ### Borrow and Return
 - **Borrow**:
   - If a movie is available, it is immediately borrowed.
-  - If not available, the user is added to a waiting list (queue).
+  - If not, the user is added to a waiting list.
 - **Return**:
-  - If a waiting list exists, the movie is assigned to the next user automatically.
+  - If a queue exists, the movie is assigned to the next user.
   - If no one is waiting, the movie becomes available again.
 
 ### Waiting List Management
-- Custom `Queue` data structure manages users waiting for each movie.
-- Users are notified through UI prompts when their turn comes.
+- A custom `Queue` data structure manages waiting users per movie.
+- Users are notified via UI messages when assigned a returned movie.
 
 ### Validation
-- Input validation for movie details (title, director, genre, year).
+- Validates inputs for title, director, genre, and year.
 - Prevents duplicate movie IDs.
-- Handles invalid data gracefully.
+- Handles empty or invalid entries gracefully.
 
 ## Testing Strategy
-- Unit tests created using xUnit.
-- Tests cover:
-  - Adding movies.
-  - Searching and sorting.
-  - Borrowing and returning movies.
-  - Queue handling.
-  - Boundary and edge cases such as:
-    - Duplicate movie IDs.
-    - Borrowing with no available movies.
-    - Empty movie collection searches.
 
+### Unit Testing
+- Tests created using **xUnit** for backend logic.
+- Coverage includes:
+  - Add, delete, and replace movies
+  - Search (title and ID)
+  - Sort (title, year, ID)
+  - Borrow and return flow
+  - Queue logic and notification export
+  - Edge cases (duplicates, empty states)
 
-## Key Features Explained
-### Search and Sort
-- **Search**: Users can search movies by title (case insensitive) or ID.
-- **Sort**: Users can sort movies:
-  - By Title using Bubble Sort.
-  - By Release Year using Merge Sort.
-- Sort order can toggle between ascending and descending when clicked again.
+### Manual UI Testing
+- 12 manual test cases documented in `manual-tests.md`
+- Each test includes:
+  - Feature tested
+  - Test steps
+  - Expected vs actual outcome
+  - Screenshots: before/after or expected/actual
 
-### Borrow and Return
-- **Borrow**:
-  - If a movie is available, it is immediately borrowed.
-  - If not available, the user is added to a waiting list (queue).
-- **Return**:
-  - If a waiting list exists, the movie is assigned to the next user automatically.
-  - If no one is waiting, the movie becomes available again.
-
-### Waiting List Management
-- Custom `Queue` data structure manages users waiting for each movie.
-- Users are notified through UI prompts when their turn comes.
-
-### Validation
-- Input validation for movie details (title, director, genre, year).
-- Prevents duplicate movie IDs.
-- Handles invalid data gracefully.
-
-## Testing Strategy
-- Unit tests created using xUnit.
-- Tests cover:
-  - Adding movies.
-  - Searching and sorting.
-  - Borrowing and returning movies.
-  - Queue handling.
-  - Boundary and edge cases such as:
-    - Duplicate movie IDs.
-    - Borrowing with no available movies.
-    - Empty movie collection searches.
+➡ See [manual-tests.md](manual-tests.md) for full documentation. PATH: `MovieLibrary.Tests/Ui tests/Test Notes.md`
+➡ Screenshots available in the `/Images` directory within the Ui Tests folder. PATH to folder: `MovieLibrary.Tests/Ui tests/Images`
 
 ## Git Workflow
-- Branch-based development approach:
-  - Each major feature was developed on a separate branch.
-  - Frequent commits with descriptive messages.
-  - Features were merged back into the main branch after review and testing.
+- Branch-based workflow used for all feature development:
+  - Each feature was developed on a dedicated branch
+  - Commits included descriptive messages
+  - Branches merged into `main` after successful testing
+- Issues and bug fixes tracked using GitHub Issues
+- Pull requests linked to relevant issue numbers (e.g., `Fixes #3`)
 
 ## Design Decisions
-- **Data Structures**: Custom-built `HashTable`, `LinkedList`, and `Queue` classes were used instead of built-in collections for educational purposes.
-- **Sorting Algorithms**: 
-  - **Bubble Sort** was chosen for simplicity in sorting titles alphabetically.
-  - **Merge Sort** was selected for efficiency in sorting by release year.
-- **UI Design**: WPF used to build a simple, clear, and responsive interface.
+- **Custom Data Structures**:
+  - `Queue`, `LinkedList`, and `HashTable` used instead of built-in collections for learning purposes.
+- **Sorting Algorithms**:
+  - Bubble Sort (simple and suitable for small datasets) used for sorting titles
+  - Merge Sort (efficient) used for sorting by release year
+- **UI**:
+  - WPF was used to create a simple, clean desktop UI.
+  - User feedback shown via labels and message boxes.
 
 ## Setup Instructions
-### Option 1:
+
+### Option 1: Using Visual Studio
 1. Clone or download the repository.
-2. Open `MovieLibraryFunctionalCode.sln` in Visual Studio 2022 or later.
+2. Open `MovieLibraryFunctionalCode.sln` in Visual Studio 2022+.
 3. Set `MovieLibrary` as the startup project.
 4. Build and run the solution.
-5. The app should now open up in a new window
+5. The app window should launch.
 
-### Option 2:
+### Option 2: Using Terminal / CLI
 1. Clone or download the repository.
-2. cd into the `movielibrary` folder
-3. run `dotnet build`
-4. run `dotnet run`
-5. The app should now open up in a new window
+2. Open a terminal and `cd` into the `movielibrary` folder.
+3. Run `dotnet build`.
+4. Run `dotnet run`.
+5. The application will start.
 
 ## Future Improvements
-- Add user accounts and authentication.
-- Improve visual styling and theme for better UX.
-- Store movie data in a database instead of JSON files.
-- Allow dynamic user names instead of fixed "User1" borrowing.
+- Add user authentication and multi-user profiles
+- Store movies in a database (e.g., SQLite or PostgreSQL) instead of JSON
+- Enhance UI layout and theme for better user experience
+- Add advanced filters (e.g., by genre, year range, director)
+- Allow dynamic usernames instead of hardcoded "User1"
 
 ## Author
-- Developed by Martyn Orchard
-- Bachelor of ICT, Major in Software Engineering, UCOL Palmerston North
+Developed by **Martyn Orchard**  
+Bachelor of ICT, Major in Software Engineering  
+UCOL Palmerston North
