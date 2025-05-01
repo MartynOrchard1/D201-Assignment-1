@@ -77,7 +77,9 @@ public class MovieService
         for (int i = 0; i < list.Count - 1; i++)
             for (int j = 0; j < list.Count - i - 1; j++)
                 if (list[j].Title.CompareTo(list[j + 1].Title) > 0)
+                {
                     (list[j], list[j + 1]) = (list[j + 1], list[j]);
+                }
         return list;
     }
 
