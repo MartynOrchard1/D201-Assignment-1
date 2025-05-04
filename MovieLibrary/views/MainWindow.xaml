@@ -140,7 +140,7 @@
             <Button Content="Clear Notifications" Click="ClearNotifications_Click" />
         </StackPanel>
 
-        <GroupBox Header="Notifications" Margin="10" Grid.Row="4">
+        <GroupBox x:Name="NotificationGroupBox" Header="Notifications" Margin="10" Grid.Row="4">
             <ListBox x:Name="notificationListBox" Height="150" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </GroupBox>
 
