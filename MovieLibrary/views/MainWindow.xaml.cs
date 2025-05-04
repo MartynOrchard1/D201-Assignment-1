@@ -165,6 +165,7 @@ public partial class MainWindow : Window
                     MessageBox.Show($"Movie '{selectedMovie.Title}' is currently unavailable. You have been added to the waiting queue.", "Added to Queue", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 RefreshMovieList();
+                RefreshNotificationList();
             }
             catch (Exception ex)
             {
@@ -229,6 +230,7 @@ public partial class MainWindow : Window
             {
                 var nextUser = service.ReturnMovie(selected.ID);
                 RefreshMovieList();
+                RefreshNotificationList();
 
                 if (nextUser != null)
                 {
@@ -471,6 +473,7 @@ public partial class MainWindow : Window
                     }
 
                     MessageBox.Show("Movies, notifications and activity logs loaded successfully.", "Load Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                    RefreshNotificationList();
                 }
                 else
                 {
