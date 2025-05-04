@@ -110,6 +110,14 @@ public class MovieService
         return Merge(left, right);
     }
 
+    public List<Movie> SortByAvailability()
+    {
+        return movieList.ToList()
+                        .OrderByDescending(m => m.IsAvailable) // Available first
+                        .ThenBy(m => m.Title)
+                        .ToList();
+    }
+
     private List<Movie> Merge(List<Movie> left, List<Movie> right)
     {
         List<Movie> result = new();
