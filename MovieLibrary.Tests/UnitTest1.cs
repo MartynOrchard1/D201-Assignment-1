@@ -645,6 +645,5 @@ namespace MovieLibrary.Tests
             Assert.Single(result);
             Assert.Equal(testLogs[0], result[0]);
         }
-
     }
 }
