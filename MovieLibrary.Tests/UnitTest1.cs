@@ -741,5 +741,36 @@ namespace MovieLibrary.Tests
             Assert.NotEmpty(exported);   
             Assert.Empty(exportedAgain); 
         }
+
+        [Fact]
+        public void SaveDataModel_ShouldStoreAndRetrieveAllProperties()
+        {
+            // Arrange
+            var movieList = new List<Movie>
+            {
+                new Movie { ID = "M1", Title = "Interstellar", Director = "Nolan", Genre = "Sci-Fi", ReleaseYear = 2014 }
+            };
+
+            var notifications = new List<string> { "Test notification" };
+            var activityLogs = new List<string> { "Log entry 1" };
+
+            var saveData = new SaveData
+            {
+                Movies = movieList,
+                Notifications = notifications,
+                ActivityLogs = activityLogs
+            };
+
+            // Assert
+            Assert.Single(saveData.Movies);
+            Assert.Equal("Interstellar", saveData.Movies[0].Title);
+
+            Assert.Single(saveData.Notifications);
+            Assert.Equal("Test notification", saveData.Notifications[0]);
+
+            Assert.Single(saveData.ActivityLogs);
+            Assert.Equal("Log entry 1", saveData.ActivityLogs[0]);
+        }
+
     }
 }
