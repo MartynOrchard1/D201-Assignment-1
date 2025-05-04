@@ -25,6 +25,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        NotificationGroupBox.Visibility = Visibility.Collapsed;
+        ToggleNotificationsButton.Content = "Show Notifications";
     }
 
     private void AddMovie_Click(object sender, RoutedEventArgs e)
@@ -148,6 +150,27 @@ public partial class MainWindow : Window
         }
     }
 
+    private void ClearNotifications_Click(object sender, RoutedEventArgs e)
+    {
+        service.ClearNotifications(); // Wipe stored notifications
+        RefreshNotificationList();    // Refresh the UI
+    }
+
+
+    private void ToggleNotifications_Click(object sender, RoutedEventArgs e)
+    {
+        if (NotificationGroupBox.Visibility == Visibility.Visible)
+        {
+            NotificationGroupBox.Visibility = Visibility.Collapsed;
+            ToggleNotificationsButton.Content = "Show Notifications";
+        }
+        else
+        {
+            NotificationGroupBox.Visibility = Visibility.Visible;
+            ToggleNotificationsButton.Content = "Hide Notifications";
+        }
+    }
+
     private void Borrow_Click(object sender, RoutedEventArgs e)
     {
         if (movieListBox.SelectedItem is Movie selectedMovie)
@@ -165,6 +188,7 @@ public partial class MainWindow : Window
                     MessageBox.Show($"Movie '{selectedMovie.Title}' is currently unavailable. You have been added to the waiting queue.", "Added to Queue", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 RefreshMovieList();
+                RefreshNotificationList();
             }
             catch (Exception ex)
             {
@@ -229,6 +253,7 @@ public partial class MainWindow : Window
             {
                 var nextUser = service.ReturnMovie(selected.ID);
                 RefreshMovieList();
+                RefreshNotificationList();
 
                 if (nextUser != null)
                 {
@@ -295,6 +320,11 @@ public partial class MainWindow : Window
         isGenreAscending = !isGenreAscending;
     }
 
+    private void RefreshNotificationList()
+    {
+        notificationListBox.ItemsSource = null;
+        notificationListBox.ItemsSource = service.ExportNotifications();
+    }
 
     private void Search_Click(object sender, RoutedEventArgs e)
     {
@@ -466,6 +496,7 @@ public partial class MainWindow : Window
                     }
 
                     MessageBox.Show("Movies, notifications and activity logs loaded successfully.", "Load Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                    RefreshNotificationList();
                 }
                 else
                 {

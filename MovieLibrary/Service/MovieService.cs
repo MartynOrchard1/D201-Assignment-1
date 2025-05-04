@@ -118,6 +118,11 @@ public class MovieService
                         .ToList();
     }
 
+    public void ClearNotifications()
+    {
+        notifications.Clear();
+    }
+
     public List<Movie> SortByGenre()
     {
         return movieList.ToList()

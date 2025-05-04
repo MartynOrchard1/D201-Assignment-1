@@ -59,7 +59,8 @@
             <RowDefinition Height="Auto"/> <!-- Input Fields -->
             <RowDefinition Height="Auto"/> <!-- Buttons -->
             <RowDefinition Height="Auto"/> <!-- Search + Reset -->
-            <RowDefinition Height="Auto"/> <!-- Sorting Buttons --> <!-- New Row -->
+            <RowDefinition Height="Auto"/> <!-- Sorting Buttons --> 
+            <RowDefinition Height="Auto"/> <!-- Notification Center --> 
             <RowDefinition Height="*"/> <!-- Listbox -->
         </Grid.RowDefinitions>
 
@@ -116,6 +117,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Button Content="Sort by Title" Click="SortTitle_Click" Grid.Column="0"/>
@@ -123,6 +125,7 @@
             <Button Content="Sort by ID" Click="SortID_Click" Grid.Column="2"/>
             <Button Content="Sort by Availability" Click="SortAvailability_Click" Grid.Column="3"/>
             <Button Content="Sort by Genre" Click="SortGenre_Click" Grid.Column="4"/>
+            <Button x:Name="ToggleNotificationsButton" Content="Hide Notifications" Click="ToggleNotifications_Click" Grid.Column="5" />
         </Grid>
 
         <!-- Search + Reset Row -->
@@ -134,11 +137,16 @@
             <TextBox x:Name="txtSearch" Width="180" Height="26" Margin="0,0,5,0" VerticalContentAlignment="Center"/>
             <Button Content="Search" Click="Search_Click" Width="80" Height="28"/>
             <Button Content="Reset" Click="Reset_Click" Width="100" Height="28" Margin="10,0,0,0"/>
+            <Button Content="Clear Notifications" Click="ClearNotifications_Click" />
         </StackPanel>
+
+        <GroupBox x:Name="NotificationGroupBox" Header="Notifications" Margin="10" Grid.Row="4">
+            <ListBox x:Name="notificationListBox" Height="150" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        </GroupBox>
 
         <!-- List Display -->
         <ListBox x:Name="movieListBox"
-                 Grid.Row="4"
+                 Grid.Row="5"
                  Margin="0"
                  Background="LightGray"
                  Foreground="Black"
