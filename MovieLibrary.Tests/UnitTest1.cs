@@ -645,5 +645,22 @@ namespace MovieLibrary.Tests
             Assert.Single(result);
             Assert.Equal(testLogs[0], result[0]);
         }
+        [Fact]
+        public void ClearNotifications_ShouldEmptyNotificationList()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M1", Title = "Test", Director = "Test", Genre = "Test", ReleaseYear = 2000 };
+            service.AddMovie(movie);
+            service.AddToWaitingQueue("M1", "User1"); // Adds one notification
+
+            // Act
+            service.ClearNotifications();
+            var result = service.ExportNotifications();
+
+            // Assert
+            Assert.Empty(result); // Notifications should be cleared
+        }
+
     }
 }
