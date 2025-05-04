@@ -40,17 +40,24 @@ public class MovieService
             if (!waitingLists.ContainsKey(id))
                 waitingLists[id] = new System.Collections.Generic.Queue<string>();
 
-            // Prevent duplicate entries in the waiting queue
             if (!waitingLists[id].Contains(user))
+            {
                 waitingLists[id].Enqueue(user);
+                LogActivity($"User '{user}' attempted to borrow '{movie.Title}' but was added to the waiting list.");
+            }
             else
+            {
                 AddNotification($"User '{user}' is already in the waiting queue for movie '{movie.Title}'.");
+                LogActivity($"User '{user}' attempted to borrow '{movie.Title}' but was already in the waiting list.");
+            }
 
             return;
         }
 
         movie.IsAvailable = false; // Mark the movie as unavailable
+        LogActivity($"User '{user}' borrowed movie '{movie.Title}'.");
     }
+
 
     public string ReturnMovie(string id)
     {
