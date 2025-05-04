@@ -3,6 +3,117 @@
 # Git log:
 ```
 $ git log --graph
+*   commit 38495fecf862a3ac57db2e0b77a70654825465be (HEAD -> main, origin/main, origin/HEAD)
+|\  Merge: aa208db dcefaff
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:18:15 2025 +1200
+| |
+| |     Merge pull request #85 from MartynOrchard1/tests/V1.1.0        
+| |
+| |     Tests/v1.1.0
+| |
+| * commit dcefaffef377a9608f4f4c997333de87e83762b3 (origin/tests/V1.1.0, tests/V1.1.0)
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:16:45 2025 +1200
+| |
+| |     #73 Generate Test Coverage Report to view
+| |
+| |     Coverage is in the green (98% & 100%) this issue can now be closed
+| |
+| * commit b56c62d3b749a6cb2187f127f2e5e2096d8c3b53
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:15:44 2025 +1200
+| |
+| |     #84 Test Completed successfully and this issue can now be closed
+| |
+| * commit 6abd742ae5dbc068796f0e1e5ec90c2496fa8410
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:14:02 2025 +1200
+| |
+| |     #73 Genereate coverage report to see if more testing is required
+| |
+| * commit 3f14e63018a0bb548fa75250adf4501d6d7d3da2
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:12:28 2025 +1200
+| |
+| |     #83 Test Completed Successfully this issue can now be closed   
+| |
+| * commit fa4d426c5ea8f6bd02148440c81a32cdf64b92fc
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:10:24 2025 +1200
+| |
+| |     #82 Test completed successfully this issue can now be closed   
+| |
+| * commit 5a74e023de55fbde0e4160c496d7b4ec55b643cd
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:09:37 2025 +1200
+| |
+| |     #81 Test completed successfully can now close this issue       
+| |
+| * commit 083971d6f7ecf1b3ef9bbfe9924d8414500eaa51
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:08:38 2025 +1200
+| |
+| |     #80 Test completed successfully can now close this
+| |
+| * commit 29bde144133500dec4c149bf1fbbdaf7ece5fdf8
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:07:46 2025 +1200
+| |
+| |     #73  Generate coverage file to review
+| |
+| |     Need more coverage for the models and the movie service.cs file
+| |
+| * commit 2e2c1663f59869070d7f09e4405abc3eaf2048d6
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:01:24 2025 +1200
+| |
+| |     #78 Test complete and successful
+| |
+| * commit 2cf4ddf29dd26782121fd7872086fb0c38ee6d9b
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 15:01:04 2025 +1200
+| |
+| |     #77 Test Complete and Successfull
+| |
+| * commit acdd7d2523769e2962108e514733e52dab676d53
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:57:49 2025 +1200
+| |
+| |     #79 Issue was the test was not seeing the director, genre or release year
+| |
+| * commit 7d38c72bd60eda3d92b06a5698f22ce412492ac4
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:54:24 2025 +1200
+| |
+| |     #76 Test complete and did not pass
+| |
+| * commit fd571e69d540a08742c9d8d4e44f8b4d4933d92a
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:53:20 2025 +1200
+| |
+| |     #75 test complete and successful
+| |
+| * commit 3116c58e8ac7b4900b49ed8c107711a11dc44a0e
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:52:42 2025 +1200
+| |
+| |     #74 Movie test
+| |
+| * commit 179522fd34b8473102659ea665d63e0b4bbac695
+|/  Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+|   Date:   Sun May 4 14:52:05 2025 +1200
+|
+|       s
+|
+* commit aa208db81e77709318539201fc542eb0ce5c6b50
+| Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| Date:   Sun May 4 14:45:56 2025 +1200
+|
+|     Update issue templates
+|
+|     Remove bug label from xUnit Tests Template
+|
 * commit 22984f3704483732a17ef27f82eff8b22800116c (HEAD -> main, origin/main, origin/HEAD)
 | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
 | Date:   Sun May 4 14:30:52 2025 +1200
