@@ -661,6 +661,31 @@ namespace MovieLibrary.Tests
             // Assert
             Assert.Empty(result); // Notifications should be cleared
         }
+        
+        [Fact]
+        public void BorrowMovie_ShouldNotDuplicateUserInQueue_AndLogNotification()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M1", Title = "TestMovie", Director = "Test", Genre = "Test", ReleaseYear = 2024 };
+            service.AddMovie(movie);
+
+            // First borrow to make it unavailable
+            service.BorrowMovie("M1", "User1");
+
+            // Add the same user to the waiting queue
+            service.AddToWaitingQueue("M1", "User1");
+
+            // Act
+            service.BorrowMovie("M1", "User1"); // Should hit ELSE block
+
+            // Assert
+            var logs = service.GetActivityLog();
+            var exported = service.ExportNotifications();
+
+            Assert.Contains(logs, log => log.Contains("already in the waiting list"));
+            Assert.Contains(exported, msg => msg.Contains("already in the waiting queue"));
+        }
 
     }
 }
