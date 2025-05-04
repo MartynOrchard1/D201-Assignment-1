@@ -12,6 +12,7 @@ The Movie Library Management System is a C# WPF desktop application that allows 
 - **MovieLibrary.Tests/** – xUnit test project covering backend functionality, users can also find the UI Tests inside of this folder `Ui Tests/`
 - **images/** – Screenshots from manual UI tests
 - **Test Notes.md** – Manual testing documentation this can be found inside of the Ui Tests/ folder
+- **CHANGELOG.md** – Tracks changes between all versions | currently only: v1.0.0 and v1.1.0
 
 ## Features
 - Add, edit, and delete movies
@@ -20,10 +21,18 @@ The Movie Library Management System is a C# WPF desktop application that allows 
   - Title (Bubble Sort)
   - Release Year (Merge Sort)
   - Movie ID (default sort)
+  - Genre (alphabetically)
+  - Availability (available movies listed first)
 - Borrow movies with queue management if unavailable
 - Return movies and automatically assign to the next user in the queue if applicable
 - Save and load movie collections from JSON files
 - UI feedback provided for all important user actions
+- **Activity Log** – Track all borrow and return actions with timestamp
+- **Notification Center UI** – Replaces MessageBoxes for persistent feedback
+- **Clear Notifications Button** – Clears notification panel manually
+- **Toggleable Notification Panel** – Show/hide notifications on demand
+- **Sorting Toggle** – Repeated clicks on sort buttons reverse the order
+- **SaveData** class used to persist full state (movies, logs, notifications)
 
 ## Key Features Explained
 
@@ -32,6 +41,9 @@ The Movie Library Management System is a C# WPF desktop application that allows 
 - **Sort**: Users can sort movies:
   - By Title using Bubble Sort.
   - By Release Year using Merge Sort.
+  - By ID (default sort).
+  - By Genre (A-Z)
+  - By Availability (available movies shown first)
   - Sort order toggles between ascending and descending.
 
 ### Borrow and Return
@@ -41,10 +53,12 @@ The Movie Library Management System is a C# WPF desktop application that allows 
 - **Return**:
   - If a queue exists, the movie is assigned to the next user.
   - If no one is waiting, the movie becomes available again.
+- **Activity logs**: Each action is logged with a timestamp.
 
 ### Waiting List Management
 - A custom `Queue` data structure manages waiting users per movie.
-- Users are notified via UI messages when assigned a returned movie.
+- Users are notified via Notification Center when assigned a returned movie.
+- Attempting to rejoin a queue logs a system message instead of adding duplicates.
 
 ### Validation
 - Validates inputs for title, director, genre, and year.
@@ -58,9 +72,11 @@ The Movie Library Management System is a C# WPF desktop application that allows 
 - Coverage includes:
   - Add, delete, and replace movies
   - Search (title and ID)
-  - Sort (title, year, ID)
+  - Sort (title, year, ID, genre, availability)
   - Borrow and return flow
   - Queue logic and notification export
+  - Activity log export/import
+  - SaveData binding
   - Edge cases (duplicates, empty states)
 
 ### Manual UI Testing
@@ -71,7 +87,7 @@ The Movie Library Management System is a C# WPF desktop application that allows 
   - Expected vs actual outcome
   - Screenshots: before/after or expected/actual
 
-➡ See [manual-tests.md](manual-tests.md) for full documentation. PATH: `MovieLibrary.Tests/Ui tests/Test Notes.md`
+➡ See [manual-tests.md](manual-tests.md) for full documentation. PATH: `MovieLibrary.Tests/Ui tests/Test Notes.md`  
 ➡ Screenshots available in the `/Images` directory within the Ui Tests folder. PATH to folder: `MovieLibrary.Tests/Ui tests/Images`
 
 ## Git Workflow
@@ -81,6 +97,8 @@ The Movie Library Management System is a C# WPF desktop application that allows 
   - Branches merged into `main` after successful testing
 - Issues and bug fixes tracked using GitHub Issues
 - Pull requests linked to relevant issue numbers (e.g., `Fixes #3`)
+- Releases tagged using GitHub (`v1.0.0`, `v1.1.0`)
+- `CHANGELOG.md` added to document all version history
 
 ## Design Decisions
 - **Custom Data Structures**:
@@ -90,7 +108,8 @@ The Movie Library Management System is a C# WPF desktop application that allows 
   - Merge Sort (efficient) used for sorting by release year
 - **UI**:
   - WPF was used to create a simple, clean desktop UI.
-  - User feedback shown via labels and message boxes.
+  - User feedback shown via Notification Center (persistent) and labels.
+  - Notification panel can be toggled to improve focus.
 
 ## Setup Instructions
 
