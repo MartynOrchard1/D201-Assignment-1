@@ -285,11 +285,16 @@ public partial class MainWindow : Window
         isAvailabilityAscending = !isAvailabilityAscending;
     }
     
-    private void SortGenre_Click(object sender, RoutedEventArgs e)
+   private void SortGenre_Click(object sender, RoutedEventArgs e)
     {
         var sorted = service.SortByGenre();
+        if (!isGenreAscending)
+            sorted.Reverse();
+
         movieListBox.ItemsSource = sorted;
+        isGenreAscending = !isGenreAscending;
     }
+
 
     private void Search_Click(object sender, RoutedEventArgs e)
     {
