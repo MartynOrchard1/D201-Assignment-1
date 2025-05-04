@@ -435,7 +435,13 @@ public partial class MainWindow : Window
                         }
                     }
 
-                    MessageBox.Show("Movies and notifications loaded successfully.", "Load Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                    // Load activity logs
+                    if (data.ActivityLogs != null)
+                    {
+                        service.ImportActivityLog(data.ActivityLogs);
+                    }
+
+                    MessageBox.Show("Movies, notifications and activity logs loaded successfully.", "Load Complete", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
