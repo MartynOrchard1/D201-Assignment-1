@@ -14,7 +14,7 @@
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Padding" Value="6,4"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="80"/>
+            <Setter Property="Width" Value="120"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -59,6 +59,7 @@
             <RowDefinition Height="Auto"/> <!-- Input Fields -->
             <RowDefinition Height="Auto"/> <!-- Buttons -->
             <RowDefinition Height="Auto"/> <!-- Search + Reset -->
+            <RowDefinition Height="Auto"/> <!-- Sorting Buttons --> <!-- New Row -->
             <RowDefinition Height="*"/> <!-- Listbox -->
         </Grid.RowDefinitions>
 
@@ -96,24 +97,36 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/> <!-- Hidden spacer column -->
             </Grid.ColumnDefinitions>
 
-            <Button Content="Load Movies" Click="LoadFromFile_Click" Grid.Column="1"  />
+            <Button Content="Load Movies" Click="LoadFromFile_Click" Grid.Column="1" />
             <Button Content="Save Movies" Click="SaveToFile_Click" Grid.Column="2" />
             <Button Content="Edit Movie" Click="Edit_Click" Grid.Column="3"/>
             <Button Content="Delete" Click="Delete_Click" Grid.Column="4"/>
             <Button Content="Borrow" Click="Borrow_Click" Grid.Column="5"/>
             <Button Content="Return" Click="Return_Click" Grid.Column="6"/>
-            <Button Content="Sort by Title" Click="SortTitle_Click" Grid.Column="7"/>
-            <Button Content="Sort by Year" Click="SortYear_Click" Grid.Column="8"/>
-            <Button Content="Sort by ID" Click="SortID_Click" Grid.Column="9"/>
+        </Grid>
+
+        <!-- Sorting Buttons -->
+        <Grid Grid.Row="2" Margin="0,0,0,5"> <!-- New Grid for sorting buttons -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Sort by Title" Click="SortTitle_Click" Grid.Column="0"/>
+            <Button Content="Sort by Year" Click="SortYear_Click" Grid.Column="1"/>
+            <Button Content="Sort by ID" Click="SortID_Click" Grid.Column="2"/>
+            <Button Content="Sort by Availability" Click="SortAvailability_Click" Grid.Column="3"/>
+            <Button Content="Sort by Genre" Click="SortGenre_Click" Grid.Column="4"/>
         </Grid>
 
         <!-- Search + Reset Row -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,10">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,10">
             <ComboBox x:Name="cmbSearchType" Width="120" Height="26" Margin="0,0,5,0" VerticalContentAlignment="Center" SelectedIndex="0">
                 <ComboBoxItem Content="Search by Title" />
                 <ComboBoxItem Content="Search by MovieID" />
@@ -125,7 +138,7 @@
 
         <!-- List Display -->
         <ListBox x:Name="movieListBox"
-                 Grid.Row="3"
+                 Grid.Row="4"
                  Margin="0"
                  Background="LightGray"
                  Foreground="Black"

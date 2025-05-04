@@ -18,6 +18,9 @@ public partial class MainWindow : Window
     private bool isTitleAscending = true;
     private bool isYearAscending = true;
     private bool isIdAscending = true;
+    private bool isAvailabilityAscending = true;
+    private bool isGenreAscending = true;
+
 
     public MainWindow()
     {
@@ -271,6 +274,27 @@ public partial class MainWindow : Window
         movieListBox.ItemsSource = sorted;
         isIdAscending = !isIdAscending;
     }
+
+    private void SortAvailability_Click(object sender, RoutedEventArgs e)
+    {
+        var sorted = service.SortByAvailability();
+        if (!isAvailabilityAscending)
+            sorted.Reverse();
+
+        movieListBox.ItemsSource = sorted;
+        isAvailabilityAscending = !isAvailabilityAscending;
+    }
+    
+   private void SortGenre_Click(object sender, RoutedEventArgs e)
+    {
+        var sorted = service.SortByGenre();
+        if (!isGenreAscending)
+            sorted.Reverse();
+
+        movieListBox.ItemsSource = sorted;
+        isGenreAscending = !isGenreAscending;
+    }
+
 
     private void Search_Click(object sender, RoutedEventArgs e)
     {
