@@ -272,6 +272,13 @@ public partial class MainWindow : Window
         isIdAscending = !isIdAscending;
     }
 
+    private void SortAvailability_Click(object sender, RoutedEventArgs e)
+    {
+        var sorted = service.SortByAvailability();
+        movieListBox.ItemsSource = sorted;
+    }
+    
+
     private void Search_Click(object sender, RoutedEventArgs e)
     {
         if (cmbSearchType.SelectedItem is ComboBoxItem selectedItem)
