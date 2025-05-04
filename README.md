@@ -8,7 +8,6 @@ The Movie Library Management System is a C# WPF desktop application that allows 
 - **Services/** – Business logic including Borrow/Return, Search, Sort, Logging
 - **DataStructures/** – Custom LinkedList, Queue, and HashTable implementations
 - **Views/** – WPF Frontend (MainWindow.xaml and code-behind)
-- **Helpers/** – File handling and validation utilities
 - **MovieLibrary.Tests/** – xUnit test project covering backend functionality, users can also find the UI Tests inside of this folder `Ui Tests/`
 - **images/** – Screenshots from manual UI tests
 - **Test Notes.md** – Manual testing documentation this can be found inside of the Ui Tests/ folder
