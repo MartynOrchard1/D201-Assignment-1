@@ -40,36 +40,45 @@ public class MovieService
             if (!waitingLists.ContainsKey(id))
                 waitingLists[id] = new System.Collections.Generic.Queue<string>();
 
-            // Prevent duplicate entries in the waiting queue
             if (!waitingLists[id].Contains(user))
+            {
                 waitingLists[id].Enqueue(user);
+                LogActivity($"User '{user}' attempted to borrow '{movie.Title}' but was added to the waiting list.");
+            }
             else
+            {
                 AddNotification($"User '{user}' is already in the waiting queue for movie '{movie.Title}'.");
+                LogActivity($"User '{user}' attempted to borrow '{movie.Title}' but was already in the waiting list.");
+            }
 
             return;
         }
 
         movie.IsAvailable = false; // Mark the movie as unavailable
+        LogActivity($"User '{user}' borrowed movie '{movie.Title}'.");
     }
 
+
     public string ReturnMovie(string id)
-    {
+        {
         var movie = SearchByID(id);
         if (movie == null)
             throw new Exception("Movie not found");
 
+        movie.IsAvailable = true; // Mark the movie as available again
+        LogActivity($"Movie '{movie.Title}' was returned.");
+
         if (waitingLists.ContainsKey(id) && waitingLists[id].Count > 0)
         {
-            // Assign the movie to the next user in the queue
-            var nextUser = waitingLists[id].Dequeue();
-            AddNotification($"Movie '{movie.Title}' has been assigned to {nextUser}.");
+            string nextUser = waitingLists[id].Dequeue();
+            AddNotification($"Movie '{movie.Title}' is now available for user '{nextUser}'.");
+            LogActivity($"Movie '{movie.Title}' is now available and next user '{nextUser}' was notified.");
             return nextUser;
         }
 
-        // If no users are in the queue, mark the movie as available
-        movie.IsAvailable = true;
         return null;
     }
+
 
     public List<Movie> BubbleSortByTitle()
     {
@@ -162,5 +171,24 @@ public class MovieService
         var exported = notifications.ToList();
         notifications.Clear();
         return exported;
+    }
+
+    // Activity Log to record borrw/return events
+    private readonly List<string> activityLog = new();
+
+    private void LogActivity(string activity)
+    {
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        activityLog.Add($"[{timestamp}] {activity}");
+    }
+
+    public List<string> GetActivityLog() => new(activityLog); // Return a copy of the activity log
+
+    public void ImportActivityLog(List<string> logs)
+    {
+        foreach (var entry in logs)
+        {
+            activityLog.Add(entry);
+        }
     }
 }
