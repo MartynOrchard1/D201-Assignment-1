@@ -3,6 +3,276 @@
 # Git log:
 ```
 $ git log --graph
+* commit 22984f3704483732a17ef27f82eff8b22800116c (HEAD -> main, origin/main, origin/HEAD)
+| Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| Date:   Sun May 4 14:30:52 2025 +1200
+|
+|     Update changelog.md
+|
+* commit adb972871f1b43cf288f954da295fd4475f5b229      
+| Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| Date:   Sun May 4 14:30:19 2025 +1200
+|
+|     #71 Create file
+|
+*   commit c08a205577f6b8fcc34b7ff45fc7e212f92b5255    
+|\  Merge: adfc0cb 1287573
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:28:32 2025 +1200
+| |
+| |     Merge pull request #70 from MartynOrchard1/feature/notification-center
+| |
+| |     Feature/notification center
+| |
+| * commit 12875739de66523345e44d3495f55aa17d63fd64 (origin/feature/notification-center, feature/notification-center)
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:26:39 2025 +1200
+| |
+| |     #69 Make it so that the Notifications box is hidden on load
+| |
+| * commit d2e5026d25a6504038ae28870502a6e4a0665ec1    
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:25:15 2025 +1200
+| |
+| |     #69 Button works
+| |
+| * commit e2990c289fafbe6bf21c55cdb667a16c58fd1ede
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:23:34 2025 +1200
+| |
+| |     #69 Add backend logic for the toggle button
+| | 
+| * commit 123b3c7c3b343f999382661c27406cd0161064c7
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:23:12 2025 +1200
+| |
+| |     #69 Add the button to the frontend
+| |
+| * commit f5949b91bf4972e81360b1231948855747bccadb
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:20:07 2025 +1200
+| |
+| |     #68 Decided to just move the button to fix the styling :)
+| |
+| * commit 3b2c622f07bcbb371ae5c274ac755b738854ede7
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:14:36 2025 +1200
+| |
+| |     #68 Find a different optional implementation as that one breaks the styling
+| |
+| * commit ddf6913206fa782c587a7dcb300f05638b5f9a3a
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:11:55 2025 +1200
+| |
+| |     #68 Implement optional task (frontend)
+| |
+| * commit dc6a836c26c100e061e463ba6a134ed06300077d
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:10:30 2025 +1200
+| |
+| |     #68 Call RefreshNotificationList() in required methods
+| |
+| * commit b41b686e2d281af8458e59e7a3854f58fe8398a7
+|/  Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+|   Date:   Sun May 4 14:07:31 2025 +1200
+|
+|       #68 Update frontend and backend
+|
+*   commit adfc0cb05a1fe01eff281a04656fcb49edb73ba9
+|\  Merge: c6a400a aa506af
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:02:31 2025 +1200
+| |
+| |     Merge pull request #67 from MartynOrchard1/feature/extra-sorts
+| |
+| |     Feature/extra sorts
+| |
+| * commit aa506afe8baf98dfa895ea7652f00c9c63cb5eee (origin/feature/extra-sorts, feature/extra-sorts)
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 14:00:01 2025 +1200
+| |
+| |     #66 Ran app and reversed sorting is now working
+| |
+| * commit d4ae900c8a0ce5e27edb9a5d49e4f4c4c9e12f0a
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:59:23 2025 +1200
+| |
+| |     #66 Make it so that sortGenre_Click can be sorted in the reverse order
+| |
+| * commit 9d3da339545c7418521fc138094a13474e91199f
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:58:50 2025 +1200
+| |
+| |     #66 Make it so that sortAvailbility_Click can be sorted in the reverse order
+| |
+| * commit bd5171db023442071b64390c6866053cbe5e7fcd
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:58:16 2025 +1200
+| |
+| |     Update MainWindow.xaml.cs
+| |
+| * commit c5a8e87815b2e429a8dc430a57a734ea10722e11
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:57:55 2025 +1200
+| |
+| |     #66 Edit the styling so the button text would fit inside of the button
+| |
+| * commit 217451723c9ce76a80adcdb9e281df0fa94d9fda
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:50:00 2025 +1200
+| |
+| |     #66 Ran application and it works just need to add it so that the sorts can be reversed
+| |
+| * commit 6a2395e1c941f6c07bf20376eb6a0ea8f53af15e
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:48:37 2025 +1200
+| |
+| |     #66 Add SortGenre_Click
+| |
+| |     Add backend logic for the sorting movies via genre
+| |
+| * commit 98fe805c8389b8dcd022ef29e0433f1c851dd641
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:48:22 2025 +1200
+| |
+| |     #66 Add SortAvailability_Click
+| |
+| |     Backend logic for the sorting via movie availability
+| |
+| * commit f62194671651034dfdc0080ee7b53acac6e55272
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:47:24 2025 +1200
+| |
+| |     #66 Update styling so that the sorting buttons appear on their own individual line
+| |
+| |     Also add the sorting buttons
+| |
+| * commit d6fa1cdc3f9a6aa7978408d067d110be66bb7633
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:43:21 2025 +1200
+| |
+| |     #66 add Sort by Genre
+| |
+| * commit b4ff58f40d58fca148f05fbd2d1ef437325ac052
+|/  Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+|   Date:   Sun May 4 13:43:01 2025 +1200
+|
+|       #66 Add Sort by availability
+|
+*   commit c6a400a353ad44c5b7b557f23d00cb01db60443a
+|\  Merge: 949077b 548b8b4
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:36:30 2025 +1200
+| |
+| |     Merge pull request #65 from MartynOrchard1/feature/activity-logging
+| |
+| |     Feature/activity logging
+| |
+| * commit 548b8b4ad6de15b875f7dc26f092f9b0ae91427c (origin/feature/activity-logging, feature/activity-logging)
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:35:38 2025 +1200
+| |
+| |     Delete changelog.md
+| |
+| * commit efdc0809c8a5c0274fe2073a3b618e4efa91d9a5
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:33:44 2025 +1200
+| |
+| |     #64 Run application and worked successfully
+| |
+| * commit c114643b21879fea13d9fd25ea56e091f9ab1d2b
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:31:40 2025 +1200
+| |
+| |     #64 Add log activity to the 'return movie' method
+| |
+| * commit 5e4d3d71172da3d639a4e0c86175d0c5c7f00679
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:31:12 2025 +1200
+| |
+| |     #64 Add log activity to the 'Borrow Movie' Method
+| |
+| * commit 43d354d1d9cb0b461046ae8fdbe8a87cd79f3e47
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:25:50 2025 +1200
+| |
+| |     #64 Update the load method to expect logs as part of the .JSON file
+| |
+| * commit bf52e4487ddc6313814a1247d20c90f53d1d0250
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:24:54 2025 +1200
+| |
+| |     #64 Update the Save File method to include the new activity logs
+| |
+| * commit 26b15b0af7e093ec09efcfae557c9949ea43504e
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:24:07 2025 +1200
+| |
+| |     #64 Complete new service
+| |
+| * commit aeb92c265a14e52360c67374ff57a5ed63038e8b
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Sun May 4 13:23:01 2025 +1200
+| |
+| |     #64 Start the new service for activity logging
+| |
+| * commit 640b17e4f87fda0164224fef6e38258c8cd21cb9
+|/  Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+|   Date:   Sun May 4 13:21:06 2025 +1200
+|
+|       Create new property model
+|
+* commit 949077b5c69078a9ecded554280a42ed337514b1
+| Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| Date:   Sun May 4 13:07:48 2025 +1200
+|
+|     Ran app
+|
+* commit dcc4b719e4f1a1ed1400b0c00c794c6dfad426c2
+| Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| Date:   Thu May 1 17:59:57 2025 +1200
+|
+|     Ran app
+|
+* commit b23e873980f5ef0315a034514373b132ba238e8f
+| Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| Date:   Thu May 1 17:35:42 2025 +1200
+|
+|     Ran the app
+|
+* commit a48baf0ec01a8777ba151b136315f0417f5267a9
+| Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| Date:   Thu May 1 11:13:22 2025 +1200
+|
+|     Update gitlog.md
+|
+* commit d46060b518d8d0a3abda081a1974e55bd06cf28c
+| Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| Date:   Thu May 1 11:13:04 2025 +1200
+|
+|     Update gitlog.md
+|
+*   commit 88bc557303bb7adcbee6c1034474bae971a55262
+|\  Merge: 7a09824 edc3c23
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Thu May 1 08:57:51 2025 +1200
+| |
+| |     Merge pull request #63 from MartynOrchard1/testing/ui
+| |
+| |     Update README.md
+| |
+| * commit edc3c23c7816ae8ee6fac7967dcacaa6491393a0 (origin/testing/ui, testing/ui)
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Thu May 1 08:46:25 2025 +1200
+| |
+| |     Update README.md
+| |
+* | commit 7a098245586f28637f80b0240e5a675a1284817e
+| | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
+| | Date:   Thu May 1 08:56:24 2025 +1200
+| |
+| |     #62 Export git log into a markdown file for lecturer
+| |
 *   commit 642e9a240f78eced24554f5cc2a66e3deedf8f8a (HEAD -> main, origin/main, origin/HEAD)
 |\  Merge: af16f96 0a59e95
 | | Author: MartynOrchard1 <121004839+MartynOrchard1@users.noreply.github.com>
