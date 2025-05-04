@@ -60,23 +60,25 @@ public class MovieService
 
 
     public string ReturnMovie(string id)
-    {
+        {
         var movie = SearchByID(id);
         if (movie == null)
             throw new Exception("Movie not found");
 
+        movie.IsAvailable = true; // Mark the movie as available again
+        LogActivity($"Movie '{movie.Title}' was returned.");
+
         if (waitingLists.ContainsKey(id) && waitingLists[id].Count > 0)
         {
-            // Assign the movie to the next user in the queue
-            var nextUser = waitingLists[id].Dequeue();
-            AddNotification($"Movie '{movie.Title}' has been assigned to {nextUser}.");
+            string nextUser = waitingLists[id].Dequeue();
+            AddNotification($"Movie '{movie.Title}' is now available for user '{nextUser}'.");
+            LogActivity($"Movie '{movie.Title}' is now available and next user '{nextUser}' was notified.");
             return nextUser;
         }
 
-        // If no users are in the queue, mark the movie as available
-        movie.IsAvailable = true;
         return null;
     }
+
 
     public List<Movie> BubbleSortByTitle()
     {
