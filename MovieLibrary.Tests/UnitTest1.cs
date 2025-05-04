@@ -579,5 +579,23 @@ namespace MovieLibrary.Tests
             Assert.Single(logs);
             Assert.Contains("User 'User1' borrowed movie 'Inception'", logs[0]);
         }
+        
+        [Fact]
+        public void ReturnMovie_ShouldAddLogEntry()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M002", Title = "Matrix", Director = "Wachowski", Genre = "Sci-Fi", ReleaseYear = 1999, IsAvailable = false };
+            service.AddMovie(movie);
+
+            // Act
+            service.ReturnMovie("M002");
+
+            // Assert
+            var logs = service.GetActivityLog();
+            Assert.Single(logs);
+            Assert.Contains("Movie 'Matrix' was returned", logs[0]);
+        }
+
     }
 }
