@@ -661,7 +661,7 @@ namespace MovieLibrary.Tests
             // Assert
             Assert.Empty(result); // Notifications should be cleared
         }
-        
+
         [Fact]
         public void BorrowMovie_ShouldNotDuplicateUserInQueue_AndLogNotification()
         {
@@ -684,6 +684,27 @@ namespace MovieLibrary.Tests
             var exported = service.ExportNotifications();
 
             Assert.Contains(logs, log => log.Contains("already in the waiting list"));
+            Assert.Contains(exported, msg => msg.Contains("already in the waiting queue"));
+        }
+
+        [Fact]
+        public void AddToWaitingQueue_ShouldAddUserToNewQueue()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M1", Title = "Blade Runner", Director = "Ridley Scott", Genre = "Sci-Fi", ReleaseYear = 1982 };
+            service.AddMovie(movie);
+
+            // Act
+            service.AddToWaitingQueue("M1", "User42");
+
+            // Re-borrow movie to check notification triggers queue
+            service.BorrowMovie("M1", "SomeoneElse"); // Ensure it's unavailable
+            service.BorrowMovie("M1", "User42");
+
+            var exported = service.ExportNotifications();
+
+            // Assert
             Assert.Contains(exported, msg => msg.Contains("already in the waiting queue"));
         }
 
