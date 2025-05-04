@@ -372,12 +372,13 @@ public partial class MainWindow : Window
             var data = new
             {
                 Movies = service.GetAllMovies(),
-                Notifications = service.ExportNotifications()
+                Notifications = service.ExportNotifications(),
+                ActivityLogs = service.GetActivityLog() // ✅ added
             };
 
             var json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(dialog.FileName, json);
-            MessageBox.Show("Movies and notifications saved successfully.", "Save Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Movies, notifications, and logs saved successfully.", "Save Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 
