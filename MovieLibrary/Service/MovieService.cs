@@ -118,6 +118,14 @@ public class MovieService
                         .ToList();
     }
 
+    public List<Movie> SortByGenre()
+    {
+        return movieList.ToList()
+                        .OrderBy(m => m.Genre)
+                        .ThenBy(m => m.Title)
+                        .ToList();
+    }
+
     private List<Movie> Merge(List<Movie> left, List<Movie> right)
     {
         List<Movie> result = new();
