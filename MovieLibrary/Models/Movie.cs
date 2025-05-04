@@ -16,4 +16,5 @@ public class SaveData
 {
     public List<Movie> Movies { get; set; }
     public List<string> Notifications { get; set; }
+    public List<string>? ActivityLogs { get; set; }
 }
