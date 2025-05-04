@@ -278,6 +278,11 @@ public partial class MainWindow : Window
         movieListBox.ItemsSource = sorted;
     }
     
+    private void SortGenre_Click(object sender, RoutedEventArgs e)
+    {
+        var sorted = service.SortByGenre();
+        movieListBox.ItemsSource = sorted;
+    }
 
     private void Search_Click(object sender, RoutedEventArgs e)
     {
