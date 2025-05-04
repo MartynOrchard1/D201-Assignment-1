@@ -163,4 +163,13 @@ public class MovieService
         notifications.Clear();
         return exported;
     }
+
+    // Activity Log to record borrw/return events
+    private readonly List<string> activityLog = new();
+
+    private void LogActivity(string activity)
+    {
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        activityLog.Add($"[{timestamp}] {activity}");
+    }
 }
