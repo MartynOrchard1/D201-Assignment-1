@@ -560,8 +560,217 @@ namespace MovieLibrary.Tests
             Assert.False(queue.isEmpty());
         }
     }
-    public class newReleaseTests {
+    public class newReleaseTests 
+    {
         // These tests are for release V1.1.0
-        
+        [Fact]
+        public void BorrowMovie_ShouldAddLogEntry()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M001", Title = "Inception", Director = "Nolan", Genre = "Thriller", ReleaseYear = 2010 };
+            service.AddMovie(movie);
+
+            // Act
+            service.BorrowMovie("M001", "User1");
+
+            // Assert
+            var logs = service.GetActivityLog();
+            Assert.Single(logs);
+            Assert.Contains("User 'User1' borrowed movie 'Inception'", logs[0]);
+        }
+
+        [Fact]
+        public void ReturnMovie_ShouldAddLogEntry()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M002", Title = "Matrix", Director = "Wachowski", Genre = "Sci-Fi", ReleaseYear = 1999, IsAvailable = false };
+            service.AddMovie(movie);
+
+            // Act
+            service.ReturnMovie("M002");
+
+            // Assert
+            var logs = service.GetActivityLog();
+            Assert.Single(logs);
+            Assert.Contains("Movie 'Matrix' was returned", logs[0]);
+        }
+                
+        [Fact]
+        public void SortByAvailability_ShouldSortWithAvailableMoviesFirst()
+        {
+            // Arrange
+            var service = new MovieService();
+            service.AddMovie(new Movie { ID = "M1", Title = "A", IsAvailable = false, Director = "Test", Genre = "Test", ReleaseYear = 2000 });
+            service.AddMovie(new Movie { ID = "M2", Title = "B", IsAvailable = true, Director = "Test", Genre = "Test", ReleaseYear = 2000 });
+
+            // Act
+            var result = service.SortByAvailability();
+
+            // Assert
+            Assert.Equal("B", result[0].Title); // Available movie should be first
+        }
+
+        [Fact]
+        public void SortByGenre_ShouldSortAlphabeticallyByGenreThenTitle()
+        {
+            // Arrange
+            var service = new MovieService();
+            service.AddMovie(new Movie { ID = "M1", Title = "A", IsAvailable = false, Director = "Test", Genre = "Horror", ReleaseYear = 2000 });
+            service.AddMovie(new Movie { ID = "M2", Title = "A", IsAvailable = false, Director = "Test", Genre = "Action", ReleaseYear = 2000 });
+
+            // Act
+            var result = service.SortByGenre();
+
+            // Assert
+            Assert.Equal("A", result[0].Title); // Action comes before Horror
+        }
+
+        [Fact]
+        public void ImportActivityLog_ShouldRestoreLogsCorrectly()
+        {
+            // Arrange
+            var service = new MovieService();
+            var testLogs = new List<string>
+            {
+                "[2025-05-04 12:00:00] User 'X' borrowed movie 'Y'."
+            };
+
+            // Act
+            service.ImportActivityLog(testLogs);
+            var result = service.GetActivityLog();
+
+            // Assert
+            Assert.Single(result);
+            Assert.Equal(testLogs[0], result[0]);
+        }
+        [Fact]
+        public void ClearNotifications_ShouldEmptyNotificationList()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M1", Title = "Test", Director = "Test", Genre = "Test", ReleaseYear = 2000 };
+            service.AddMovie(movie);
+            service.AddToWaitingQueue("M1", "User1"); // Adds one notification
+
+            // Act
+            service.ClearNotifications();
+            var result = service.ExportNotifications();
+
+            // Assert
+            Assert.Empty(result); // Notifications should be cleared
+        }
+
+        [Fact]
+        public void BorrowMovie_ShouldNotDuplicateUserInQueue_AndLogNotification()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M1", Title = "TestMovie", Director = "Test", Genre = "Test", ReleaseYear = 2024 };
+            service.AddMovie(movie);
+
+            // First borrow to make it unavailable
+            service.BorrowMovie("M1", "User1");
+
+            // Add the same user to the waiting queue
+            service.AddToWaitingQueue("M1", "User1");
+
+            // Act
+            service.BorrowMovie("M1", "User1"); // Should hit ELSE block
+
+            // Assert
+            var logs = service.GetActivityLog();
+            var exported = service.ExportNotifications();
+
+            Assert.Contains(logs, log => log.Contains("already in the waiting list"));
+            Assert.Contains(exported, msg => msg.Contains("already in the waiting queue"));
+        }
+
+        [Fact]
+        public void AddToWaitingQueue_ShouldAddUserToNewQueue()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M1", Title = "Blade Runner", Director = "Ridley Scott", Genre = "Sci-Fi", ReleaseYear = 1982 };
+            service.AddMovie(movie);
+
+            // Act
+            service.AddToWaitingQueue("M1", "User42");
+
+            // Re-borrow movie to check notification triggers queue
+            service.BorrowMovie("M1", "SomeoneElse"); // Ensure it's unavailable
+            service.BorrowMovie("M1", "User42");
+
+            var exported = service.ExportNotifications();
+
+            // Assert
+            Assert.Contains(exported, msg => msg.Contains("already in the waiting queue"));
+        }
+
+        [Fact]
+        public void ExportNotifications_ShouldReturnAndClearNotifications()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie
+            {
+                ID = "M1",
+                Title = "Avatar",
+                Director = "Cameron",
+                Genre = "Action",
+                ReleaseYear = 2009
+            };
+
+            service.AddMovie(movie);
+
+            // Borrow the movie once to make it unavailable
+            service.BorrowMovie("M1", "UserX");
+
+            // Manually add the user to the waiting queue (simulate they are waiting)
+            service.AddToWaitingQueue("M1", "UserX");
+
+            // Try borrowing again as the same user - triggers notification
+            service.BorrowMovie("M1", "UserX");
+
+            // Act
+            var exported = service.ExportNotifications();
+            var exportedAgain = service.ExportNotifications(); // Should be empty
+
+            // Assert
+            Assert.NotEmpty(exported);   
+            Assert.Empty(exportedAgain); 
+        }
+
+        [Fact]
+        public void SaveDataModel_ShouldStoreAndRetrieveAllProperties()
+        {
+            // Arrange
+            var movieList = new List<Movie>
+            {
+                new Movie { ID = "M1", Title = "Interstellar", Director = "Nolan", Genre = "Sci-Fi", ReleaseYear = 2014 }
+            };
+
+            var notifications = new List<string> { "Test notification" };
+            var activityLogs = new List<string> { "Log entry 1" };
+
+            var saveData = new SaveData
+            {
+                Movies = movieList,
+                Notifications = notifications,
+                ActivityLogs = activityLogs
+            };
+
+            // Assert
+            Assert.Single(saveData.Movies);
+            Assert.Equal("Interstellar", saveData.Movies[0].Title);
+
+            Assert.Single(saveData.Notifications);
+            Assert.Equal("Test notification", saveData.Notifications[0]);
+
+            Assert.Single(saveData.ActivityLogs);
+            Assert.Equal("Log entry 1", saveData.ActivityLogs[0]);
+        }
+
     }
 }
