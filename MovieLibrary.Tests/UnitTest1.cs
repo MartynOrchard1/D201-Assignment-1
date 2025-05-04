@@ -596,14 +596,14 @@ namespace MovieLibrary.Tests
             Assert.Single(logs);
             Assert.Contains("Movie 'Matrix' was returned", logs[0]);
         }
-        
+                
         [Fact]
         public void SortByAvailability_ShouldSortWithAvailableMoviesFirst()
         {
             // Arrange
             var service = new MovieService();
-            service.AddMovie(new Movie { ID = "M1", Title = "A", IsAvailable = false });
-            service.AddMovie(new Movie { ID = "M2", Title = "B", IsAvailable = true });
+            service.AddMovie(new Movie { ID = "M1", Title = "A", IsAvailable = false, Director = "Test", Genre = "Test", ReleaseYear = 2000 });
+            service.AddMovie(new Movie { ID = "M2", Title = "B", IsAvailable = true, Director = "Test", Genre = "Test", ReleaseYear = 2000 });
 
             // Act
             var result = service.SortByAvailability();
@@ -611,6 +611,5 @@ namespace MovieLibrary.Tests
             // Assert
             Assert.Equal("B", result[0].Title); // Available movie should be first
         }
-
     }
 }
