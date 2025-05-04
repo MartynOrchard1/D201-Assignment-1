@@ -563,6 +563,21 @@ namespace MovieLibrary.Tests
     public class newReleaseTests 
     {
         // These tests are for release V1.1.0
-        
+        [Fact]
+        public void BorrowMovie_ShouldAddLogEntry()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie { ID = "M001", Title = "Inception", Director = "Nolan", Genre = "Thriller", ReleaseYear = 2010 };
+            service.AddMovie(movie);
+
+            // Act
+            service.BorrowMovie("M001", "User1");
+
+            // Assert
+            var logs = service.GetActivityLog();
+            Assert.Single(logs);
+            Assert.Contains("User 'User1' borrowed movie 'Inception'", logs[0]);
+        }
     }
 }
