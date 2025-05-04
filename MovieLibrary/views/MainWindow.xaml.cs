@@ -148,6 +148,13 @@ public partial class MainWindow : Window
         }
     }
 
+    private void ClearNotifications_Click(object sender, RoutedEventArgs e)
+    {
+        service.ClearNotifications(); // Wipe stored notifications
+        RefreshNotificationList();    // Refresh the UI
+    }
+
+
     private void Borrow_Click(object sender, RoutedEventArgs e)
     {
         if (movieListBox.SelectedItem is Movie selectedMovie)
