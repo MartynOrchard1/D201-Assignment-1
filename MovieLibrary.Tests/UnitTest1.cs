@@ -708,5 +708,38 @@ namespace MovieLibrary.Tests
             Assert.Contains(exported, msg => msg.Contains("already in the waiting queue"));
         }
 
+        [Fact]
+        public void ExportNotifications_ShouldReturnAndClearNotifications()
+        {
+            // Arrange
+            var service = new MovieService();
+            var movie = new Movie
+            {
+                ID = "M1",
+                Title = "Avatar",
+                Director = "Cameron",
+                Genre = "Action",
+                ReleaseYear = 2009
+            };
+
+            service.AddMovie(movie);
+
+            // Borrow the movie once to make it unavailable
+            service.BorrowMovie("M1", "UserX");
+
+            // Manually add the user to the waiting queue (simulate they are waiting)
+            service.AddToWaitingQueue("M1", "UserX");
+
+            // Try borrowing again as the same user - triggers notification
+            service.BorrowMovie("M1", "UserX");
+
+            // Act
+            var exported = service.ExportNotifications();
+            var exportedAgain = service.ExportNotifications(); // Should be empty
+
+            // Assert
+            Assert.NotEmpty(exported);   
+            Assert.Empty(exportedAgain); 
+        }
     }
 }
