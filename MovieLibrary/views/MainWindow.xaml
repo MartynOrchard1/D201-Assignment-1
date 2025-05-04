@@ -59,7 +59,8 @@
             <RowDefinition Height="Auto"/> <!-- Input Fields -->
             <RowDefinition Height="Auto"/> <!-- Buttons -->
             <RowDefinition Height="Auto"/> <!-- Search + Reset -->
-            <RowDefinition Height="Auto"/> <!-- Sorting Buttons --> <!-- New Row -->
+            <RowDefinition Height="Auto"/> <!-- Sorting Buttons --> 
+            <RowDefinition Height="Auto"/> <!-- Notification Center --> 
             <RowDefinition Height="*"/> <!-- Listbox -->
         </Grid.RowDefinitions>
 
@@ -136,9 +137,13 @@
             <Button Content="Reset" Click="Reset_Click" Width="100" Height="28" Margin="10,0,0,0"/>
         </StackPanel>
 
+        <GroupBox Header="Notifications" Margin="10" Grid.Row="4">
+            <ListBox x:Name="notificationListBox" Height="150"/>
+        </GroupBox>
+
         <!-- List Display -->
         <ListBox x:Name="movieListBox"
-                 Grid.Row="4"
+                 Grid.Row="5"
                  Margin="0"
                  Background="LightGray"
                  Foreground="Black"

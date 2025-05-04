@@ -295,6 +295,11 @@ public partial class MainWindow : Window
         isGenreAscending = !isGenreAscending;
     }
 
+    private void RefreshNotificationList()
+    {
+        notificationListBox.ItemsSource = null;
+        notificationListBox.ItemsSource = service.ExportNotifications();
+    }
 
     private void Search_Click(object sender, RoutedEventArgs e)
     {
