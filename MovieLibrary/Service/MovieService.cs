@@ -172,4 +172,14 @@ public class MovieService
         string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         activityLog.Add($"[{timestamp}] {activity}");
     }
+
+    public List<string> GetActivityLog() => new(activityLog); // Return a copy of the activity log
+
+    public void ImportActivityLog(List<string> logs)
+    {
+        foreach (var entry in logs)
+        {
+            activityLog.Add(entry);
+        }
+    }
 }
