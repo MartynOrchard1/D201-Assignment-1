@@ -627,6 +627,24 @@ namespace MovieLibrary.Tests
             Assert.Equal("A", result[0].Title); // Action comes before Horror
         }
 
-        
+        [Fact]
+        public void ImportActivityLog_ShouldRestoreLogsCorrectly()
+        {
+            // Arrange
+            var service = new MovieService();
+            var testLogs = new List<string>
+            {
+                "[2025-05-04 12:00:00] User 'X' borrowed movie 'Y'."
+            };
+
+            // Act
+            service.ImportActivityLog(testLogs);
+            var result = service.GetActivityLog();
+
+            // Assert
+            Assert.Single(result);
+            Assert.Equal(testLogs[0], result[0]);
+        }
+
     }
 }
