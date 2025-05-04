@@ -155,6 +155,20 @@ public partial class MainWindow : Window
     }
 
 
+    private void ToggleNotifications_Click(object sender, RoutedEventArgs e)
+    {
+        if (NotificationGroupBox.Visibility == Visibility.Visible)
+        {
+            NotificationGroupBox.Visibility = Visibility.Collapsed;
+            ToggleNotificationsButton.Content = "Show Notifications";
+        }
+        else
+        {
+            NotificationGroupBox.Visibility = Visibility.Visible;
+            ToggleNotificationsButton.Content = "Hide Notifications";
+        }
+    }
+
     private void Borrow_Click(object sender, RoutedEventArgs e)
     {
         if (movieListBox.SelectedItem is Movie selectedMovie)
