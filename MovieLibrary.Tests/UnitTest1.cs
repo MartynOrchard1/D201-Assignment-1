@@ -772,5 +772,16 @@ namespace MovieLibrary.Tests
             Assert.Equal("Log entry 1", saveData.ActivityLogs[0]);
         }
 
+        [Fact]
+        public void Add_ShouldThrowException_WhenDuplicateKeyIsAdded()
+        {
+            // Arrange
+            var hashTable = new HashTable<string, string>();
+            hashTable.Add("M1", "Interstellar");
+
+            // Act & Assert
+            var ex = Assert.Throws<Exception>(() => hashTable.Add("M1", "Duplicate Movie"));
+            Assert.Equal("An item with the same key has already been added/Duplicate key", ex.Message);
+        }
     }
 }
