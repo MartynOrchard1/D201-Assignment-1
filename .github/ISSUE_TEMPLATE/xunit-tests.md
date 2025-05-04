@@ -2,7 +2,7 @@
 name: xUnit Tests
 about: Use this template for xUnit tests
 title: ''
-labels: bug, documentation, enhancement, xUnit
+labels: documentation, enhancement, xUnit
 assignees: MartynOrchard1
 
 ---
