@@ -125,7 +125,7 @@
             <Button Content="Sort by ID" Click="SortID_Click" Grid.Column="2"/>
             <Button Content="Sort by Availability" Click="SortAvailability_Click" Grid.Column="3"/>
             <Button Content="Sort by Genre" Click="SortGenre_Click" Grid.Column="4"/>
-            <Button x:Name="ToggleNotificationsButton" Content="Hide/Show Notifications" Click="ToggleNotifications_Click" Grid.Column="5" />
+            <Button x:Name="ToggleNotificationsButton" Content="Hide Notifications" Click="ToggleNotifications_Click" Grid.Column="5" />
         </Grid>
 
         <!-- Search + Reset Row -->

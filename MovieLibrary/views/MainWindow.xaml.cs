@@ -25,6 +25,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        NotificationGroupBox.Visibility = Visibility.Collapsed;
+        ToggleNotificationsButton.Content = "Show Notifications";
     }
 
     private void AddMovie_Click(object sender, RoutedEventArgs e)
