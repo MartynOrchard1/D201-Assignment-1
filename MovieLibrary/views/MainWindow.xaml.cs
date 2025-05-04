@@ -18,6 +18,9 @@ public partial class MainWindow : Window
     private bool isTitleAscending = true;
     private bool isYearAscending = true;
     private bool isIdAscending = true;
+    private bool isAvailabilityAscending = true;
+    private bool isGenreAscending = true;
+
 
     public MainWindow()
     {
