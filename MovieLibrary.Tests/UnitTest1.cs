@@ -579,7 +579,7 @@ namespace MovieLibrary.Tests
             Assert.Single(logs);
             Assert.Contains("User 'User1' borrowed movie 'Inception'", logs[0]);
         }
-        
+
         [Fact]
         public void ReturnMovie_ShouldAddLogEntry()
         {
@@ -595,6 +595,21 @@ namespace MovieLibrary.Tests
             var logs = service.GetActivityLog();
             Assert.Single(logs);
             Assert.Contains("Movie 'Matrix' was returned", logs[0]);
+        }
+        
+        [Fact]
+        public void SortByAvailability_ShouldSortWithAvailableMoviesFirst()
+        {
+            // Arrange
+            var service = new MovieService();
+            service.AddMovie(new Movie { ID = "M1", Title = "A", IsAvailable = false });
+            service.AddMovie(new Movie { ID = "M2", Title = "B", IsAvailable = true });
+
+            // Act
+            var result = service.SortByAvailability();
+
+            // Assert
+            Assert.Equal("B", result[0].Title); // Available movie should be first
         }
 
     }
