@@ -611,5 +611,22 @@ namespace MovieLibrary.Tests
             // Assert
             Assert.Equal("B", result[0].Title); // Available movie should be first
         }
+
+        [Fact]
+        public void SortByGenre_ShouldSortAlphabeticallyByGenreThenTitle()
+        {
+            // Arrange
+            var service = new MovieService();
+            service.AddMovie(new Movie { ID = "M1", Title = "A", IsAvailable = false, Director = "Test", Genre = "Horror", ReleaseYear = 2000 });
+            service.AddMovie(new Movie { ID = "M2", Title = "A", IsAvailable = false, Director = "Test", Genre = "Action", ReleaseYear = 2000 });
+
+            // Act
+            var result = service.SortByGenre();
+
+            // Assert
+            Assert.Equal("A", result[0].Title); // Action comes before Horror
+        }
+
+        
     }
 }
