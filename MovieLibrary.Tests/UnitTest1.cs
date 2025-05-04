@@ -560,4 +560,8 @@ namespace MovieLibrary.Tests
             Assert.False(queue.isEmpty());
         }
     }
+    public class newReleaseTests {
+        // These tests are for release V1.1.0
+        
+    }
 }
