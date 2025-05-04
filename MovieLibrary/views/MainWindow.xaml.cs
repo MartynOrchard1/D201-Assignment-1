@@ -278,7 +278,11 @@ public partial class MainWindow : Window
     private void SortAvailability_Click(object sender, RoutedEventArgs e)
     {
         var sorted = service.SortByAvailability();
+        if (!isAvailabilityAscending)
+            sorted.Reverse();
+
         movieListBox.ItemsSource = sorted;
+        isAvailabilityAscending = !isAvailabilityAscending;
     }
     
     private void SortGenre_Click(object sender, RoutedEventArgs e)
