@@ -189,10 +189,9 @@ public class MovieService
 
     public List<string> ExportNotifications()
     {
-        var exported = notifications.ToList();
-        notifications.Clear();
-        return exported;
+        return new List<string>(activityLog);
     }
+
 
     // Activity Log to record borrw/return events
     private readonly List<string> activityLog = new();
